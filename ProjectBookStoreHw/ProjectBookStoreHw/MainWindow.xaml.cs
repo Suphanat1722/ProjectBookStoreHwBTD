@@ -23,6 +23,7 @@ namespace ProjectBookStoreHw
         public MainWindow()
         {
             InitializeComponent();
+            DataBook.InitializeDatabase();
         }
     }
 }
