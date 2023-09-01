@@ -7,32 +7,6 @@
         mc:Ignorable="d"
         Title="BookStoreApp" Height="500" Width="800">
     <Grid>
-        <Label Content="Add a New Book" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
-
-        <Label Content="Title:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,0,0"/>
-        <TextBox x:Name="txtTitleBook" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="60,40,0,0"/>
-
-        <Label Content="Description:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0"/>
-        <TextBox x:Name="txtDescriptionBook" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="80" Margin="90,80,0,0" TextWrapping="Wrap"/>
-
-        <Label Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,180,0,0"/>
-        <TextBox x:Name="txtPriceBook" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="60,180,0,0"/>
-
-        <Button x:Name="ButtonAddBook" Content="Add Book" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="20,220,0,0" Click="ButtonAddBook_Click"/>
-
-        <Label Content="Book List" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,270,0,0"/>
-        <Button x:Name="buttonDeleteBook" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="160
-                ,220,0,0" Click="buttonDeleteBook_Click"/>
-        <ListView x:Name="booksListView" HorizontalAlignment="Left" Height="150" Margin="10,301,0,0" VerticalAlignment="Top" Width="650
-                  ">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ISBN" DisplayMemberBinding="{Binding ISBN}" Width="50"/>
-                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="200"/>
-                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="300"/>
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="100"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Button x:Name="ButtonToBook" Content="Book" HorizontalAlignment="Left" Margin="63,126,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToBook_Click"/>
     </Grid>
 </Window>

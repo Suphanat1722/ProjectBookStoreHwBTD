@@ -44,11 +44,9 @@ D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\bin\Debug\System.Numerics.Vectors.xml
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\ProjectBookStoreHw.csproj.AssemblyReference.cache
-D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\MainWindow.g.cs
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\App.g.cs
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\ProjectBookStoreHw_MarkupCompile.cache
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\ProjectBookStoreHw_MarkupCompile.lref
-D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\MainWindow.baml
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\ProjectBookStoreHw.g.resources
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\ProjectBookStoreHw.Properties.Resources.resources
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\ProjectBookStoreHw.csproj.GenerateResource.cache
@@ -56,3 +54,7 @@ D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\ProjectBookStoreHw.csproj.CopyComplete
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\ProjectBookStoreHw.exe
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\ProjectBookStoreHw.pdb
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\MainWindow.g.cs
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\MainWindow.baml
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\BookWindow.g.cs
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\BookWindow.baml
