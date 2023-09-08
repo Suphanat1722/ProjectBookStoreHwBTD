@@ -8,5 +8,7 @@
         Title="BookStoreApp" Height="500" Width="800">
     <Grid>
         <Button x:Name="ButtonToBook" Content="Book" HorizontalAlignment="Left" Margin="63,126,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToBook_Click"/>
+        <Button x:Name="ButtonToCustomer" Content="Customer" HorizontalAlignment="Left" Margin="63,198,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToCustomer_Click"/>
+        <Button x:Name="ButtonToTransaction" Content="Transaction" HorizontalAlignment="Left" Margin="63,271,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToTransaction_Click"/>
     </Grid>
 </Window>

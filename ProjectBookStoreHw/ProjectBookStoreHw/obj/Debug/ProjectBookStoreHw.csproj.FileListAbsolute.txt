@@ -58,3 +58,7 @@ D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\MainWindow.baml
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\BookWindow.g.cs
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\BookWindow.baml
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\CustomerWindow.g.cs
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\TransactionWindow.g.cs
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\CustomerWindow.baml
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\TransactionWindow.baml

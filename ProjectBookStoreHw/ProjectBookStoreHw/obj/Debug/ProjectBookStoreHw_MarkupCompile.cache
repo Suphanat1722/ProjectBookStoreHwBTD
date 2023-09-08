@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\App.xaml
-21973990348
+4908681328
 
-8810780690
+121449104582
 23166624385
-BookWindow.xaml;MainWindow.xaml;
+BookWindow.xaml;CustomerWindow.xaml;MainWindow.xaml;TransactionWindow.xaml;
 
 False
 
