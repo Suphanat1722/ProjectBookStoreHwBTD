@@ -79,6 +79,65 @@ namespace ProjectBookStoreHw
             return entries;
         }
 
+        public static List<Book> SearchBooks(string keyword)
+        {
+            List<Book> result = new List<Book>();
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookDataBase.db"))
+            {
+                db.Open();
+
+                SqliteCommand searchCommand = new SqliteCommand();
+                searchCommand.Connection = db;
+
+                searchCommand.CommandText = "SELECT ISBN, Title, Description, Price FROM Books WHERE Title LIKE @Keyword OR Description LIKE @Keyword;";
+                searchCommand.Parameters.AddWithValue("@Keyword", $"%{keyword}%");
+
+                SqliteDataReader query = searchCommand.ExecuteReader();
+                while (query.Read())
+                {
+                    Book book = new Book();
+
+                    if (!query.IsDBNull(0))
+                        book.ISBN = query.GetInt32(0);
+
+                    if (!query.IsDBNull(1))
+                        book.Title = query.GetString(1);
+
+                    if (!query.IsDBNull(2))
+                        book.Description = query.GetString(2);
+
+                    if (!query.IsDBNull(3))
+                        book.Price = query.GetDecimal(3);
+
+                    result.Add(book);
+                }
+
+                db.Close();
+            }
+
+            return result;
+        }
+
+        public static void UpdateBook(int bookISBN, string newTitle, string newDescription, decimal newPrice)
+        {
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookDataBase.db"))
+            {
+                db.Open();
+
+                SqliteCommand updateCommand = new SqliteCommand();
+                updateCommand.Connection = db;
+
+                updateCommand.CommandText = "UPDATE Books SET Title = @Title, Description = @Description, Price = @Price WHERE ISBN = @ISBN;";
+                updateCommand.Parameters.AddWithValue("@Title", newTitle);
+                updateCommand.Parameters.AddWithValue("@Description", newDescription);
+                updateCommand.Parameters.AddWithValue("@Price", newPrice);
+                updateCommand.Parameters.AddWithValue("@ISBN", bookISBN);
+
+                updateCommand.ExecuteNonQuery();
+
+                db.Close();
+            }
+        }
 
         public static void DeleteBook(int bookISBN)
         {

@@ -61,5 +61,49 @@ namespace ProjectBookStoreHw
                 booksListView.ItemsSource = booksForShow;
             }
         }
+
+        private void ButtonSearchBook_Click(object sender, RoutedEventArgs e)
+        {
+            string keyword = txtTitleBook.Text;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                List<Book> searchResults = BookData.SearchBooks(keyword);
+                booksListView.ItemsSource = searchResults;
+            }
+            else
+            {
+                // ถ้าไม่มีคำค้นหาในช่องค้นหา
+                MessageBox.Show("Enter a keyword to search for books.");
+            }
+        }
+
+        private void ButtonUpdateBook_Click(object sender, RoutedEventArgs e)
+        {
+            if (booksListView.SelectedItem is Book selectedBook)
+            {
+                string newTitle = txtTitleBook.Text;
+                string newDescription = txtDescriptionBook.Text;
+                decimal newPrice;
+
+                if (decimal.TryParse(txtPriceBook.Text, out newPrice))
+                {
+                    BookData.UpdateBook(selectedBook.ISBN, newTitle, newDescription, newPrice);
+
+                    // แสดงข้อมูลหลังการอัปเดต
+                    List<Book> booksForShow = BookData.GetData();
+                    booksListView.ItemsSource = booksForShow;
+
+                    // เคลียร์ข้อมูลใน TextBox
+                    txtTitleBook.Text = "";
+                    txtDescriptionBook.Text = "";
+                    txtPriceBook.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Enter a valid price.");
+                }
+            }
+        }
     }
 }
