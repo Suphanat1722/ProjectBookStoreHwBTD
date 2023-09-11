@@ -18,12 +18,12 @@ namespace ProjectBookStoreHw
                 "CREATE TABLE IF NOT " +
                 "EXISTS Books(" +
                     "ISBN INTEGER PRIMARY KEY, " +
-                    "Title TEXT," +
-                    "Description TEXT," +
+                    "Title varchar(255)," +
+                    "Description varchar(255)," +
                     "Price DECIMAL)";
                 SqliteCommand createTable = new SqliteCommand(tableCommand, db);
 
-                createTable.ExecuteReader();
+                createTable.ExecuteNonQuery();
             }
         }
 
@@ -42,7 +42,7 @@ namespace ProjectBookStoreHw
                 insertCommand.Parameters.AddWithValue("@Price",inputPrice);
 
 
-                insertCommand.ExecuteReader();
+                insertCommand.ExecuteNonQuery();
 
                 db.Close();
             }

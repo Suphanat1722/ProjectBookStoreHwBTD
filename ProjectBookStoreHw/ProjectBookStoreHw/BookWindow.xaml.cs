@@ -105,5 +105,16 @@ namespace ProjectBookStoreHw
                 }
             }
         }
+
+        private void booksListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (booksListView.SelectedItem is Book selectedBook)
+            {
+                // แสดงข้อมูลลูกค้าที่เลือกใน TextBox
+                txtTitleBook.Text = selectedBook.Title;
+                txtDescriptionBook.Text = selectedBook.Description;
+                txtPriceBook.Text = selectedBook.Price.ToString();
+            }
+        }
     }
 }
