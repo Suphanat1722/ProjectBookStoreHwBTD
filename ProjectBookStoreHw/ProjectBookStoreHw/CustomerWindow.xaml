@@ -8,20 +8,18 @@
         Title="CustomerWindow" Height="500" Width="850">
     <Grid>
 
-        <Label Content="Customer Id" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,0,0"/>
-        <TextBox x:Name="txtCustomer_Id" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="112,39,0,0" Height="30"/>
+        <Label Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,40,0,0" FontSize="20"/>
+        <TextBox x:Name="txtCustomer_Id" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="213,39,0,0" Height="30"/>
 
-        <Label Content="Customer Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0"/>
-        <TextBox x:Name="txtCustomer_Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Height="30" Margin="112,80,0,0" TextWrapping="Wrap"/>
+        <Label Content="ชื่อ - นามสกุล" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,80,0,0" FontSize="20"/>
+        <TextBox x:Name="txtCustomer_Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Height="30" Margin="213,86,0,0" TextWrapping="Wrap"/>
 
-        <Label Content="Address" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,126,0,0"/>
-        <TextBox x:Name="txtAddress" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="112,126,0,0" Height="45"/>
+        <Label Content="ที่อยู่" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,126,0,0" FontSize="20"/>
+        <TextBox x:Name="txtAddress" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="213,136,0,0" Height="45"/>
 
-        <Button x:Name="ButtonAddCustomer" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="710,16,0,0" Click="ButtonAddCustomer_Click" Height="30"/>
-
-        <Label Content="Customer List" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,270,0,0"/>
-        <Button x:Name="buttonDeleteCustomer" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="710,219,0,0" Click="buttonDeleteCustomer_Click" Height="30"/>
-        <ListView x:Name="customersListView" HorizontalAlignment="Left" Height="150" Margin="10,301,0,0" VerticalAlignment="Top" Width="800                   " SelectionChanged="customersListView_SelectionChanged">
+        <Button x:Name="ButtonAddCustomer" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="685,43,0,0" Click="ButtonAddCustomer_Click" Height="30"/>
+        <Button x:Name="buttonDeleteCustomer" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="685,236,0,0" Click="buttonDeleteCustomer_Click" Height="30"/>
+        <ListView x:Name="customersListView" HorizontalAlignment="Left" Height="150" Margin="10,292,0,0" VerticalAlignment="Top" Width="800                   " SelectionChanged="customersListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Customer_Id}" Width="50"/>
@@ -31,10 +29,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="ButtonSearchCustomers" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="710,86,0,0" Click="ButtonSearchCustomers_Click" Height="30"/>
-        <Button x:Name="ButtonUpdateCustomer" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="710,151,0,0" Click="ButtonUpdateCustomer_Click" RenderTransformOrigin="0.225,0.492" Height="30"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Height="30" Margin="112,191,0,0" TextWrapping="Wrap"/>
-        <Label Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,191,0,0"/>
+        <Button x:Name="ButtonSearchCustomers" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="685,106,0,0" Click="ButtonSearchCustomers_Click" Height="30"/>
+        <Button x:Name="ButtonUpdateCustomer" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="685,169,0,0" Click="ButtonUpdateCustomer_Click" RenderTransformOrigin="0.225,0.492" Height="30"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Height="30" Margin="213,198,0,0" TextWrapping="Wrap"/>
+        <Label Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,191,0,0" FontSize="20"/>
 
     </Grid>
 </Window>

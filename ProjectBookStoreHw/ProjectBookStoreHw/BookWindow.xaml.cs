@@ -28,11 +28,13 @@ namespace ProjectBookStoreHw
 
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ กดเพื่อเพิ่มข้อมูลหนังสือ-------------------------------------------------------------------------------------
         private void ButtonAddBook_Click(object sender, RoutedEventArgs e)
         {
             if (txtTitleBook.Text != "" && txtDescriptionBook.Text != "" && txtPriceBook.Text != "")
             {
-                BookData.AddData(txtTitleBook.Text, txtDescriptionBook.Text, decimal.Parse(txtPriceBook.Text));
+                BookData.AddData(txtIsbn.Text,txtTitleBook.Text, txtDescriptionBook.Text, decimal.Parse(txtPriceBook.Text));
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
                 List<Book> booksForShow = BookData.GetData();
@@ -50,18 +52,24 @@ namespace ProjectBookStoreHw
 
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ ลบข้อมูลหนังสือ-------------------------------------------------------------------------------------------
         private void buttonDeleteBook_Click(object sender, RoutedEventArgs e)
         {
-            if (booksListView.SelectedItem is Book selectedBook)
+
+            MessageBox.Show(booksListView.SelectedItem.ToString());
+            /*if (booksListView.SelectedItem is Book selectedBook)
             {
                 BookData.DeleteBook(selectedBook.ISBN);
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
                 List<Book> booksForShow = BookData.GetData();
                 booksListView.ItemsSource = booksForShow;
-            }
+            }*/
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ ค้นหาข้อมูลหนังสือ-----------------------------------------------------------------------------------------
         private void ButtonSearchBook_Click(object sender, RoutedEventArgs e)
         {
             string keyword = txtTitleBook.Text;
@@ -73,44 +81,40 @@ namespace ProjectBookStoreHw
             }
             else
             {
-                // ถ้าไม่มีคำค้นหาในช่องค้นหา
-                MessageBox.Show("Enter a keyword to search for books.");
+                MessageBox.Show("ไม่มีข้อมูลที่คุณค้นหา");
             }
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ เปลี่ยนข้อมูลหนังสือ------------------------------------------------------------------------------------------
         private void ButtonUpdateBook_Click(object sender, RoutedEventArgs e)
         {
-            if (booksListView.SelectedItem is Book selectedBook)
+            string newIsbn = txtIsbn.Text;
+            string newTitle = txtTitleBook.Text;
+            string newDescription = txtDescriptionBook.Text;
+            decimal newPrice = decimal.Parse(txtPriceBook.Text);
+
+            if (newIsbn != "" && newTitle != "" && newDescription != "" && newPrice.ToString() != "")
             {
-                string newTitle = txtTitleBook.Text;
-                string newDescription = txtDescriptionBook.Text;
-                decimal newPrice;
+                BookData.UpdateBook(newIsbn, newTitle, newDescription, newPrice);
 
-                if (decimal.TryParse(txtPriceBook.Text, out newPrice))
-                {
-                    BookData.UpdateBook(selectedBook.ISBN, newTitle, newDescription, newPrice);
-
-                    // แสดงข้อมูลหลังการอัปเดต
-                    List<Book> booksForShow = BookData.GetData();
-                    booksListView.ItemsSource = booksForShow;
-
-                    // เคลียร์ข้อมูลใน TextBox
-                    txtTitleBook.Text = "";
-                    txtDescriptionBook.Text = "";
-                    txtPriceBook.Text = "";
-                }
-                else
-                {
-                    MessageBox.Show("Enter a valid price.");
-                }
+                List<Book> booksForShow = BookData.GetData();
+                booksListView.ItemsSource = booksForShow;
+            }
+            else
+            {
+                MessageBox.Show("กรอกข้อมูลไม่ครบ");
             }
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ แสดงข้อมูลหนังสือเมื่อคลิ้กใน ListView -----------------------------------------------------------------------
         private void booksListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (booksListView.SelectedItem is Book selectedBook)
             {
                 // แสดงข้อมูลลูกค้าที่เลือกใน TextBox
+                txtIsbn.Text = selectedBook.ISBN;
                 txtTitleBook.Text = selectedBook.Title;
                 txtDescriptionBook.Text = selectedBook.Description;
                 txtPriceBook.Text = selectedBook.Price.ToString();

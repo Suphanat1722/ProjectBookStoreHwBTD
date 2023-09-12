@@ -30,7 +30,7 @@ namespace ProjectBookStoreHw
         {
             if (txtCustomer_Id.Text != "" && txtCustomer_Name.Text != "" && txtAddress.Text != "" && txtEmail.Text != "")
             {
-                CustomerData.AddData(int.Parse(txtCustomer_Id.Text) , txtCustomer_Name.Text, txtAddress.Text, txtEmail.Text);
+                CustomerData.AddData(txtCustomer_Id.Text , txtCustomer_Name.Text, txtAddress.Text, txtEmail.Text);
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
                 List<Customer> customersForShow = CustomerData.GetData();
@@ -68,13 +68,13 @@ namespace ProjectBookStoreHw
         {
             if (customersListView.SelectedItem is Customer selectedCustomer)
             {
-                int customerId = selectedCustomer.Customer_Id; // รับค่า CustomerId จากลูกค้าที่เลือก
+                int customerId = int.Parse(selectedCustomer.Customer_Id);  // รับค่า CustomerId จากลูกค้าที่เลือก
 
                 string newName = txtCustomer_Name.Text;
                 string newAddress = txtAddress.Text;
                 string newEmail = txtEmail.Text;
 
-                CustomerData.UpdateCustomer(customerId, newName, newAddress, newEmail);
+                CustomerData.UpdateCustomer(customerId.ToString(), newName, newAddress, newEmail);
 
                 // แสดงข้อมูลลูกค้าหลังการอัปเดต
                 List<Customer> customersForShow = CustomerData.GetData();

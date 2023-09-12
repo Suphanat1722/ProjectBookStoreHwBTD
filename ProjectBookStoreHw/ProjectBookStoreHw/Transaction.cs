@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjectBookStoreHw
 {
-    class Customer
+    class Transaction
     {
+        public int ISBN { get; set; }
         public string Customer_Id { get; set; }
-        public string Customer_Name { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
+        public int Quatity { get; set; }
+        public decimal Total_Price { get; set; }
     }
 }

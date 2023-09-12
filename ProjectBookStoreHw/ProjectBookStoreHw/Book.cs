@@ -8,7 +8,7 @@ namespace ProjectBookStoreHw
 {
     class Book
     {
-            public int ISBN { get; set; }
+            public string ISBN { get; set; }
             public string Title { get; set; }
             public string Description { get; set; }
             public decimal Price { get; set; }

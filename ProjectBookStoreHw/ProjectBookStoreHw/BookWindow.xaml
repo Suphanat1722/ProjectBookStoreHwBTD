@@ -5,34 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectBookStoreHw"
         mc:Ignorable="d"
-        Title="BookWindow" Height="500" Width="800">
+        Title="BookWindow" Height="720" Width="1280">
     <Grid>
 
-        <Label Content="Title:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,58,0,0"/>
-        <TextBox x:Name="txtTitleBook" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="112,54,0,0" Height="30"/>
+        <Label Content="ชื่อหนังสือ" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,80,0,0" FontSize="20"/>
+        <TextBox x:Name="txtTitleBook" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="178,89,0,0" Height="30"/>
 
-        <Label Content="Description:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,111,0,0"/>
-        <TextBox x:Name="txtDescriptionBook" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="65" Margin="112,111,0,0" TextWrapping="Wrap"/>
+        <Label Content="รายละเอียด" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,140,0,0" FontSize="20"/>
+        <TextBox x:Name="txtDescriptionBook" HorizontalAlignment="Left" VerticalAlignment="Top" Width="417" Height="85" Margin="178,146,0,0" TextWrapping="Wrap"/>
 
-        <Label Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,188,0,0"/>
-        <TextBox x:Name="txtPriceBook" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="112,196,0,0" Height="30"/>
+        <Label Content="ราคา" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,236,0,0" FontSize="20"/>
+        <TextBox x:Name="txtPriceBook" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="178,244,0,0" Height="30"/>
 
-        <Button x:Name="ButtonAddBook" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="610,31,0,0" Click="ButtonAddBook_Click" Height="30"/>
-
-        <Label Content="Book List" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,270,0,0"/>
-        <Button x:Name="buttonDeleteBook" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="610,219,0,0" Click="buttonDeleteBook_Click" Height="30"/>
-        <ListView x:Name="booksListView" HorizontalAlignment="Left" Height="150" Margin="10,301,0,-32" VerticalAlignment="Top" Width="750                   " SelectionChanged="booksListView_SelectionChanged">
+        <Button x:Name="ButtonAddBook" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="660,24,0,0" Click="ButtonAddBook_Click" Height="30"/>
+        <Button x:Name="buttonDeleteBook" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="660,212,0,0" Click="buttonDeleteBook_Click" Height="30"/>
+        <ListView x:Name="booksListView" HorizontalAlignment="Left" Height="350" Margin="35,300,0,0" VerticalAlignment="Top" Width="1200" SelectionChanged="booksListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ISBN" DisplayMemberBinding="{Binding ISBN}" Width="50"/>
-                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="200"/>
-                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="400"/>
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="100"/>
+                    <GridViewColumn Header="ISBN" DisplayMemberBinding="{Binding ISBN}" Width="150"/>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="300"/>
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="600"/>
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="150"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="ButtonSearchBook" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="610,95,0,0" Click="ButtonSearchBook_Click" Height="28"/>
-        <Button x:Name="ButtonUpdateBook" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="610,153,0,0" Click="ButtonUpdateBook_Click" RenderTransformOrigin="0.225,0.492" Height="30"/>
+        <Button x:Name="ButtonSearchBook" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="660,88,0,0" Click="ButtonSearchBook_Click" Height="28"/>
+        <Button x:Name="ButtonUpdateBook" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="660,146,0,0" Click="ButtonUpdateBook_Click" RenderTransformOrigin="0.225,0.492" Height="30"/>
+        <Label Content="ISBN" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,19,0,0" FontSize="20"/>
+        <TextBox x:Name="txtIsbn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="178,27,0,0" Height="30"/>
 
     </Grid>
 </Window>

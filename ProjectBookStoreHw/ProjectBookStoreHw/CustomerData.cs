@@ -11,13 +11,13 @@ namespace ProjectBookStoreHw
     {
         public static void InitializeCustomerDatabase()
         {
-            using (SqliteConnection db = new SqliteConnection($"Filename=CustomerDataBase.db"))
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
                 string tableCommand =
                 "CREATE TABLE IF NOT " +
                 "EXISTS Customers(" +
-                    "Customer_Id INTEGER PRIMARY KEY, " +
+                    "Customer_Id varchar(255) PRIMARY KEY, " +
                     "Customer_Name varchar(255)," +
                     "Address varchar(255)," +
                     "Email varchar(255))";
@@ -27,9 +27,9 @@ namespace ProjectBookStoreHw
             }
         }
 
-        public static void AddData(int inputId,string inputName, string inputAddress, string inputEmail)
+        public static void AddData(string inputId,string inputName, string inputAddress, string inputEmail)
         {
-            using (SqliteConnection db = new SqliteConnection($"Filename=CustomerDataBase.db"))
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
 
@@ -52,7 +52,7 @@ namespace ProjectBookStoreHw
         public static List<Customer> GetData()
         {
             List<Customer> entries = new List<Customer>();
-            using (SqliteConnection db = new SqliteConnection($"Filename=CustomerDataBase.db"))
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
                 SqliteCommand selectCommand = new SqliteCommand("SELECT Customer_Id, Customer_Name, Address, Email FROM Customers", db);
@@ -62,7 +62,7 @@ namespace ProjectBookStoreHw
                     Customer customer = new Customer();
 
                     if (!query.IsDBNull(0))
-                        customer.Customer_Id = query.GetInt32(0);
+                        customer.Customer_Id = query.GetString(0);
 
                     if (!query.IsDBNull(1))
                         customer.Customer_Name = query.GetString(1);
@@ -83,7 +83,7 @@ namespace ProjectBookStoreHw
         public static List<Customer> SearchCustomers(string keyword)
         {
             List<Customer> result = new List<Customer>();
-            using (SqliteConnection db = new SqliteConnection($"Filename=CustomerDataBase.db"))
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
 
@@ -99,7 +99,7 @@ namespace ProjectBookStoreHw
                     Customer customer = new Customer();
 
                     if (!query.IsDBNull(0))
-                        customer.Customer_Id = query.GetInt32(0);
+                        customer.Customer_Id = query.GetString(0);
 
                     if (!query.IsDBNull(1))
                         customer.Customer_Name = query.GetString(1);
@@ -119,9 +119,9 @@ namespace ProjectBookStoreHw
             return result;
         }
 
-        public static void UpdateCustomer(int customerId, string inputName, string inputAddress, string inputEmail)
+        public static void UpdateCustomer(string customerId, string inputName, string inputAddress, string inputEmail)
         {
-            using (SqliteConnection db = new SqliteConnection($"Filename=CustomerDataBase.db"))
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
 
@@ -140,9 +140,9 @@ namespace ProjectBookStoreHw
             }
         }
 
-        public static void DeleteCustomer(int customer_Id)
+        public static void DeleteCustomer(string customer_Id)
         {
-            using (SqliteConnection db = new SqliteConnection($"Filename=CustomerDataBase.db"))
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
 
