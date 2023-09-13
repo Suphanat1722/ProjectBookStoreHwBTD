@@ -19,7 +19,7 @@ namespace ProjectBookStoreHw
                 string tableCommand =
                 "CREATE TABLE IF NOT " +
                 "EXISTS Transactions(" +
-                    "No varchar(255) PRIMARY KEY," +
+                    "No INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "ISBN varchar(255)," + 
                     "Customer_Id varchar(255)," +
                     "Quatity INTEGER," + 
@@ -33,7 +33,7 @@ namespace ProjectBookStoreHw
 
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ เพิ่มข้อมูลการซื้อหนังสือ-------------------------------------------------------------------------------------
-        public static void AddData(int inputQuantity,decimal inputTotal)
+        public static void AddTransactionData(string inputIsbn, string inputCus_Id, int inputQuantity, decimal inputTotal)
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
@@ -42,7 +42,10 @@ namespace ProjectBookStoreHw
                 SqliteCommand insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
 
-                insertCommand.CommandText = "INSERT INTO Transactions (Quatity,Total_Price) VALUES (@Quatity,@Total_Price);";
+                insertCommand.CommandText = "INSERT INTO Transactions (ISBN,Customer_Id,Quatity,Total_Price) " +
+                                            "VALUES (@ISBN,@Customer_Id,@Quatity,@Total_Price);";
+                insertCommand.Parameters.AddWithValue("@ISBN", inputIsbn);
+                insertCommand.Parameters.AddWithValue("@Customer_Id", inputCus_Id);
                 insertCommand.Parameters.AddWithValue("@Quatity", inputQuantity);
                 insertCommand.Parameters.AddWithValue("@Total_Price", inputTotal);
 
@@ -56,29 +59,32 @@ namespace ProjectBookStoreHw
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ ดึงข้อมูลหนังสือ-------------------------------------------------------------------------------------------
 
-        public static List<Transaction> GetData()
+        public static List<Transaction> GetTransactionData()
         {
             List<Transaction> entries = new List<Transaction>();
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
-                SqliteCommand selectCommand = new SqliteCommand("SELECT ISBN, Customer_Id, Quatity, Total_Price FROM Transactions", db);
+                SqliteCommand selectCommand = new SqliteCommand("SELECT No, ISBN, Customer_Id, Quatity, Total_Price FROM Transactions", db);
                 SqliteDataReader query = selectCommand.ExecuteReader();
                 while (query.Read())
                 {
                     Transaction transaction = new Transaction();
 
                     if (!query.IsDBNull(0))
-                        transaction.ISBN = query.GetInt32(0);
+                        transaction.No = query.GetInt32(0);
 
                     if (!query.IsDBNull(1))
-                        transaction.Customer_Id = query.GetString(1);
+                        transaction.ISBN = query.GetString(1);
 
                     if (!query.IsDBNull(2))
-                        transaction.Quatity = query.GetInt32(2);
+                        transaction.Customer_Id = query.GetString(2);
 
                     if (!query.IsDBNull(3))
-                        transaction.Total_Price = query.GetDecimal(3);
+                        transaction.Quatity = query.GetInt32(3);
+
+                    if (!query.IsDBNull(4))
+                        transaction.Total_Price = query.GetDecimal(4);
 
                     entries.Add(transaction);
                 }
@@ -87,7 +93,9 @@ namespace ProjectBookStoreHw
             return entries;
         }
 
-        public static void DeleteTransaction(int isbn)
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับลบเพื่อเทสระบบ-------------------------------------------------------------------------------------
+        /*public static void DeleteTransaction(int inputNo)
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
@@ -96,12 +104,12 @@ namespace ProjectBookStoreHw
                 SqliteCommand deleteCommand = new SqliteCommand();
                 deleteCommand.Connection = db;
 
-                deleteCommand.CommandText = "DELETE FROM Transactions WHERE ISBN = @ISBN";
-                deleteCommand.Parameters.AddWithValue("@ISBN",isbn);
+                deleteCommand.CommandText = "DELETE FROM Transactions WHERE No = @No";
+                deleteCommand.Parameters.AddWithValue("@No", inputNo);
 
                 deleteCommand.ExecuteNonQuery();
                 db.Close();
             }
-        }       
+        }      */ 
     }
 }

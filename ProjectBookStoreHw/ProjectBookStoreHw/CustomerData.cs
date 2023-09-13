@@ -103,7 +103,7 @@ namespace ProjectBookStoreHw
                                             "WHERE Customer_Id LIKE @Keyword " +
                                             "OR Customer_Name LIKE @Keyword;";
 
-                searchCommand.Parameters.AddWithValue("@Keyword", $"%{keyword}%");
+                searchCommand.Parameters.AddWithValue("@Keyword",keyword);
 
                 SqliteDataReader query = searchCommand.ExecuteReader();
                 while (query.Read())

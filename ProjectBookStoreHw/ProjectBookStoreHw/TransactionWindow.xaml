@@ -11,14 +11,15 @@
         <TextBox x:Name="txtISBN" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="123,65,0,0" Height="30" TextChanged="txtISBN_TextChanged"/>
 
         <Label Content="จำนวนหนังสือ" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,284,0,0" FontSize="20"/>
-        <TextBox x:Name="txtNumOfBooks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="30" Margin="226,289,0,0" TextWrapping="Wrap"/>
+        <TextBox x:Name="txtQuatity" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="30" Margin="226,289,0,0" TextWrapping="Wrap"/>
 
         <Label Content="หมายเลขสมาชิก" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,338,0,0" FontSize="20"/>
         <TextBox x:Name="txtCus_Id" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="226,345,0,0" Height="30"/>
         <Button x:Name="buttonApply" Content="ยืนยัน" HorizontalAlignment="Left" Margin="66,458,0,0" VerticalAlignment="Top" Width="100" Height="40" FontSize="20" Click="buttonApply_Click_1"/>
-        <ListView x:Name="testListView" HorizontalAlignment="Left" Height="306" Margin="574,298,0,0" VerticalAlignment="Top" Width="400">
+        <ListView x:Name="testListView" HorizontalAlignment="Left" Height="300" Margin="574,298,0,0" VerticalAlignment="Top" Width="450">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="No" DisplayMemberBinding="{Binding No}" Width="50"/>
                     <GridViewColumn Header="ISBN" DisplayMemberBinding="{Binding ISBN}" Width="100"/>
                     <GridViewColumn Header="Customer_Id" DisplayMemberBinding="{Binding Customer_Id}" Width="100"/>
                     <GridViewColumn Header="Quatity" DisplayMemberBinding="{Binding Quatity}" Width="100"/>

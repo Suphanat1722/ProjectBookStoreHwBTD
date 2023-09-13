@@ -24,6 +24,7 @@ namespace ProjectBookStoreHw
             //แสดงข้อมูลหนังสือบน List View
             List<Customer> customerForShow = CustomerData.GetDataCustomers();
             customersListView.ItemsSource = customerForShow;
+
         }
 
         // -----------------------------------------------------------------------------------------------------------

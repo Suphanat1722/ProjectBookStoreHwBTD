@@ -24,67 +24,57 @@ namespace ProjectBookStoreHw
         {
             InitializeComponent();
             TransactionData.InitializeTransactionDatabase();
-            List<Transaction> transactionForShow = TransactionData.GetData();
-            testListView.ItemsSource = transactionForShow;
+            List<Transaction> transactionForShow = TransactionData.GetTransactionData();
+            testListView.ItemsSource = transactionForShow;        
         }
 
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ เพิ่มข้อมูลการซื้อหนังสือ-------------------------------------------------------------------------------------
         private void txtISBN_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (int.TryParse(txtISBN.Text, out int isbn))
-            {
-                List<Book> books = BookData.GetBooksByISBN(isbn);
-                transactionListView.ItemsSource = books;
-            }
-            else
-            {
-                // หากผู้ใช้ป้อนข้อมูลไม่ถูกต้องหรือว่างเปล่า คุณสามารถเคลียร์รายการหนังสือ
-                transactionListView.ItemsSource = null;
-            }
+            List<Book> books = BookData.GetBooksByISBN(txtISBN.Text);
+            transactionListView.ItemsSource = books;
         }
 
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ เพิ่มข้อมูลการซื้อหนังสือ-------------------------------------------------------------------------------------
         private void buttonApply_Click_1(object sender, RoutedEventArgs e)
         {
-            List<Book> selectedBooks = BookData.GetPrice(int.Parse(txtISBN.Text));
+            string inputIsbn = txtISBN.Text;
+            string inputCus_Id = txtCus_Id.Text;
+            string inputQuatity = txtQuatity.Text;
 
-            // ตรวจสอบว่ามีหนังสือที่ถูกเลือกหรือไม่
-            if (selectedBooks.Count > 0)
+            // คำนวณผลรวมราคาหนังสือ
+            List<Book> bookPricesList = BookData.GetPrice(inputIsbn);
+            decimal bookPrices = bookPricesList[0].Price;
+            decimal Total_Price = bookPrices * decimal.Parse(inputQuatity); 
+
+            //เช็คว่า textBox ต้องไม่ว่าง 
+            if (!string.IsNullOrEmpty(inputIsbn) &&
+                !string.IsNullOrEmpty(inputCus_Id) &&
+                !string.IsNullOrEmpty(inputQuatity))
             {
-                // เลือกหนังสือแรก (หรือหนังสือที่คุณต้องการ) เพื่อนำมาคำนวณ
-                Book selectedBook = selectedBooks[0];
-
-                // ทำการคำนวณราคาจากจำนวนหนังสือที่ซื้อ
-                decimal totalPrice = Decimal.Parse(txtNumOfBooks.Text) * selectedBook.Price;
-
-                // เรียก TransactionData.AddData ด้วยราคาที่คำนวณได้
-                TransactionData.AddData(int.Parse(txtNumOfBooks.Text), totalPrice);
-
-                // แสดงข้อมูลหลังการคลิกปุ่ม
-                List<Transaction> transactionsForShow = TransactionData.GetData();
-                testListView.ItemsSource = transactionsForShow;
+               TransactionData.AddTransactionData(inputIsbn, inputCus_Id,int.Parse(inputQuatity), Total_Price);
+               MessageBox.Show("บันทึกการสั่งซื้อเรียบร้อย");
             }
+            
 
-            else
-            {
-                MessageBox.Show(" Enter ");
-            }
+            List<Transaction> transactionForShow = TransactionData.GetTransactionData();
+            testListView.ItemsSource = transactionForShow;
         }
-
 
         // -----------------------------------------------------------------------------------------------------------
-        // สำหรับ เพิ่มข้อมูลการซื้อหนังสือ-------------------------------------------------------------------------------------
-        private void buttonDelete_Click(object sender, RoutedEventArgs e)
+        // ปุ่มลบสำหรับเทสระบบ-------------------------------------------------------------------------------------------
+        /*private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (testListView.SelectedItem is Transaction selectedBook)
+            if (testListView.SelectedItem is Transaction selectedTransaction)
             {
-                TransactionData.DeleteTransaction(selectedBook.ISBN);
+                TransactionData.DeleteTransaction(selectedTransaction.No); // เปลี่ยนให้ใช้ No แทน ISBN
 
-                List<Transaction> transactionForShow = TransactionData.GetData();
+                List<Transaction> transactionForShow = TransactionData.GetTransactionData();
                 testListView.ItemsSource = transactionForShow;
             }
-        }
+        }*/
+
     }
 }
