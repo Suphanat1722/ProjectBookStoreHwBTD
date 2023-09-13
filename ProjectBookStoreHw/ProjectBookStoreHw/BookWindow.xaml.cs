@@ -32,13 +32,24 @@ namespace ProjectBookStoreHw
         // สำหรับ กดเพื่อเพิ่มข้อมูลหนังสือ-------------------------------------------------------------------------------------
         private void ButtonAddBook_Click(object sender, RoutedEventArgs e)
         {
-            if (txtTitleBook.Text != "" && txtDescriptionBook.Text != "" && txtPriceBook.Text != "")
+            string inputIsbn = txtIsbn.Text;
+            string inputTitle = txtTitleBook.Text;
+            string inputDescription = txtDescriptionBook.Text;
+            string inputPrice = txtPriceBook.Text;
+
+            //เช็คว่าใน TextBox ไม่ว่าง
+            if (!string.IsNullOrEmpty(inputIsbn)&&
+                !string.IsNullOrEmpty(inputTitle)&&
+                !string.IsNullOrEmpty(inputDescription)&&
+                !string.IsNullOrEmpty(inputPrice)) 
             {
-                BookData.AddData(txtIsbn.Text,txtTitleBook.Text, txtDescriptionBook.Text, decimal.Parse(txtPriceBook.Text));
+                BookData.AddData(inputIsbn, inputTitle, inputDescription,decimal.Parse(inputPrice));
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
                 List<Book> booksForShow = BookData.GetData();
                 booksListView.ItemsSource = booksForShow;
+
+                MessageBox.Show("เพิ่มข้อมูลเรียบร้อย");
 
                 //เมื่อกด Add จะ clear ข้อมูลใน textBox
                 txtTitleBook.Text = "";
@@ -47,7 +58,7 @@ namespace ProjectBookStoreHw
             }
             else
             {
-                MessageBox.Show(" Enter Title and Description and Price ");
+                MessageBox.Show(" กรุณากรอกข้อมูลให้ครบ ");
             }
 
         }
@@ -56,16 +67,16 @@ namespace ProjectBookStoreHw
         // สำหรับ ลบข้อมูลหนังสือ-------------------------------------------------------------------------------------------
         private void buttonDeleteBook_Click(object sender, RoutedEventArgs e)
         {
-
-            MessageBox.Show(booksListView.SelectedItem.ToString());
-            /*if (booksListView.SelectedItem is Book selectedBook)
+            if (booksListView.SelectedItem is Book selectedBook)
             {
                 BookData.DeleteBook(selectedBook.ISBN);
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
                 List<Book> booksForShow = BookData.GetData();
                 booksListView.ItemsSource = booksForShow;
-            }*/
+
+                MessageBox.Show("ลบรายการหนังสือเรียบร้อย");
+            }
         }
 
         // -----------------------------------------------------------------------------------------------------------
@@ -92,14 +103,21 @@ namespace ProjectBookStoreHw
             string newIsbn = txtIsbn.Text;
             string newTitle = txtTitleBook.Text;
             string newDescription = txtDescriptionBook.Text;
-            decimal newPrice = decimal.Parse(txtPriceBook.Text);
+            string newPrice = txtPriceBook.Text;
 
-            if (newIsbn != "" && newTitle != "" && newDescription != "" && newPrice.ToString() != "")
+            //เช็คว่าใน TextBox ต้องไม่ว่าง
+            if (!string.IsNullOrEmpty(newIsbn) &&
+                !string.IsNullOrEmpty(newTitle) &&
+                !string.IsNullOrEmpty(newDescription) &&
+                !string.IsNullOrEmpty(newPrice))
             {
-                BookData.UpdateBook(newIsbn, newTitle, newDescription, newPrice);
+                BookData.UpdateBook(newIsbn, newTitle, newDescription, decimal.Parse(newPrice));
 
+                //แสดงข้อมูลหลังการคลิกปุ่ม
                 List<Book> booksForShow = BookData.GetData();
                 booksListView.ItemsSource = booksForShow;
+
+                MessageBox.Show("เปลี่ยนข้อมูลเรียบร้อย");
             }
             else
             {
@@ -111,9 +129,9 @@ namespace ProjectBookStoreHw
         // สำหรับ แสดงข้อมูลหนังสือเมื่อคลิ้กใน ListView -----------------------------------------------------------------------
         private void booksListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (booksListView.SelectedItem is Book selectedBook)
+            if (booksListView.SelectedItem is Book selectedBook)//เช็คว่าใน booksListView.SelectedItem เป็นข้อมูลเดียวกับ Book ไหม ถ้ามี selectedBook จะเป็น true 
             {
-                // แสดงข้อมูลลูกค้าที่เลือกใน TextBox
+                // แสดงข้อมูลลูกค้าที่เลือกใน TextBox               
                 txtIsbn.Text = selectedBook.ISBN;
                 txtTitleBook.Text = selectedBook.Title;
                 txtDescriptionBook.Text = selectedBook.Description;

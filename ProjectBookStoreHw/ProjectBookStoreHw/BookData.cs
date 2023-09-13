@@ -151,7 +151,7 @@ namespace ProjectBookStoreHw
 
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ ลบข้อมูลหนังสือ-------------------------------------------------------------------------------------------
-        public static void DeleteBook(int bookISBN)
+        public static void DeleteBook(string bookISBN)
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
@@ -204,6 +204,8 @@ namespace ProjectBookStoreHw
             return books;
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ ดึงราคาหนังสือด้วยเลข ISBN---------------------------------------------------------------------------------
         public static List<Book> GetPrice(int isbn)
         {
             List<Book> entries = new List<Book>();
@@ -225,7 +227,5 @@ namespace ProjectBookStoreHw
             }
             return entries;
         }
-
-
     }
 }
