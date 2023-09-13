@@ -102,29 +102,30 @@ namespace ProjectBookStoreHw
         }
 
         // -----------------------------------------------------------------------------------------------------------
-        // สำหรับ เปลี่ยนข้อมูลหนังสือ------------------------------------------------------------------------------------------
+        // สำหรับ แก้ไขข้อมูลหนังสือ-----------------------------------------------------------------------------------------
         private void ButtonUpdateBook_Click(object sender, RoutedEventArgs e)
         {
+            string inputIsbn = txtIsbn.Text;
             string newTitle = txtTitleBook.Text;
             string newDescription = txtDescriptionBook.Text;
             string newPrice = txtPriceBook.Text;
 
             //เช็คว่าใน TextBox ต้องไม่ว่าง
-            if (!string.IsNullOrEmpty(newTitle) &&
+            if (!string.IsNullOrEmpty(inputIsbn) &&
+                !string.IsNullOrEmpty(newTitle) &&
                 !string.IsNullOrEmpty(newDescription) &&
                 !string.IsNullOrEmpty(newPrice))
             {
-                BookData.UpdateBook(newTitle, newDescription, decimal.Parse(newPrice));
+                BookData.UpdateBook(inputIsbn, newTitle, newDescription, decimal.Parse(newPrice));
 
+                MessageBox.Show("เปลี่ยนข้อมูลเรียบร้อย");
                 //แสดงข้อมูลหลังการคลิกปุ่ม
                 List<Book> booksForShow = BookData.GetBooksData();
                 booksListView.ItemsSource = booksForShow;
-
-                MessageBox.Show("เปลี่ยนข้อมูลเรียบร้อย");
             }
             else
             {
-                MessageBox.Show("กรอกข้อมูลไม่ครบ");
+                MessageBox.Show("กรุณ่กรอกข้อมูลให้ครบ");
             }
         }
 

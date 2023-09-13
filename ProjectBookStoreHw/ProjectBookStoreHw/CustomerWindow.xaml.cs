@@ -22,7 +22,7 @@ namespace ProjectBookStoreHw
             CustomerData.InitializeCustomerDatabase();
 
             //แสดงข้อมูลหนังสือบน List View
-            List<Customer> customerForShow = CustomerData.GetData();
+            List<Customer> customerForShow = CustomerData.GetDataCustomers();
             customersListView.ItemsSource = customerForShow;
         }
 
@@ -44,7 +44,7 @@ namespace ProjectBookStoreHw
                 CustomerData.AddData(inputCus_Id, inputCus_Name, inputAddress, inputEmail);
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
-                List<Customer> customersForShow = CustomerData.GetData();
+                List<Customer> customersForShow = CustomerData.GetDataCustomers();
                 customersListView.ItemsSource = customersForShow;
 
                 //เมื่อกด Add จะ clear ข้อมูลใน textBox
@@ -63,36 +63,46 @@ namespace ProjectBookStoreHw
         // สำหรับ กดเพื่อค้นหาข้อมูลลูกค้า-------------------------------------------------------------------------------------
         private void ButtonSearchCustomers_Click(object sender, RoutedEventArgs e)
         {
-            string keyword = txtCustomer_Id.Text;
+            string keyword_Id = txtCustomer_Id.Text;
+            string keyword_Name = txtCustomer_Name.Text;
 
-            if (!string.IsNullOrEmpty(keyword))
+            if (!string.IsNullOrEmpty(keyword_Id))
             {
-                List<Customer> searchResults = CustomerData.SearchCustomers(keyword);
+                List<Customer> searchResults = CustomerData.SearchCustomer(keyword_Id);
+                customersListView.ItemsSource = searchResults;
+            }
+            else if (!string.IsNullOrEmpty(keyword_Name))
+            {
+                List<Customer> searchResults = CustomerData.SearchCustomer(keyword_Name);
                 customersListView.ItemsSource = searchResults;
             }
             else
             {
                 // ถ้าไม่มีคำค้นหาในช่องค้นหา
-                MessageBox.Show("กรุณากรอก ID");
+                MessageBox.Show("กรุณากรอก ID หรือชื่อลูกค้า");
             }
         }
 
         // -----------------------------------------------------------------------------------------------------------
-        // สำหรับ กดเพื่อเพิ่มข้อมูลลูกค้า--------------------------------------------------------------------------------------
+        // สำหรับ กดเพื่อแก้ไขข้อมูลลูกค้า--------------------------------------------------------------------------------------
         private void ButtonUpdateCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if (customersListView.SelectedItem is Customer selectedCustomer)
-            {
-                int customerId = int.Parse(selectedCustomer.Customer_Id);  // รับค่า CustomerId จากลูกค้าที่เลือก
+            string inputCus_Id = txtCustomer_Id.Text;
+            string newName = txtCustomer_Name.Text;
+            string newAddress = txtAddress.Text;
+            string newEmail = txtEmail.Text;
 
-                string newName = txtCustomer_Name.Text;
-                string newAddress = txtAddress.Text;
-                string newEmail = txtEmail.Text;
+            if (!string.IsNullOrEmpty(inputCus_Id) &&
+                !string.IsNullOrEmpty(newName) &&
+                !string.IsNullOrEmpty(newAddress) &&
+                !string.IsNullOrEmpty(newEmail))
+            {                
+                CustomerData.UpdateCustomer(inputCus_Id,newName, newAddress, newEmail);
 
-                CustomerData.UpdateCustomer(customerId.ToString(), newName, newAddress, newEmail);
+                MessageBox.Show("แก้ไขข้อมูลสำเร็จ");
 
                 // แสดงข้อมูลลูกค้าหลังการอัปเดต
-                List<Customer> customersForShow = CustomerData.GetData();
+                List<Customer> customersForShow = CustomerData.GetDataCustomers();
                 customersListView.ItemsSource = customersForShow;
 
                 // เคลียร์ข้อมูลใน TextBox
@@ -101,24 +111,31 @@ namespace ProjectBookStoreHw
                 txtAddress.Text = "";
                 txtEmail.Text = "";
             }
+            else
+            {
+                MessageBox.Show("กรุณ่กรอกข้อมูลให้ครบ");
+            }
+
         }
 
         // -----------------------------------------------------------------------------------------------------------
-        // สำหรับ กดเพื่อเพิ่มข้อมูลลูกค้า--------------------------------------------------------------------------------------
+        // สำหรับ กดเพื่อลบรายการลูกค้า--------------------------------------------------------------------------------------
         private void buttonDeleteCustomer_Click(object sender, RoutedEventArgs e)
         {
             if (customersListView.SelectedItem is Customer selectedCustomer)
             {
                 CustomerData.DeleteCustomer(selectedCustomer.Customer_Id);
 
+                MessageBox.Show("ลบรายการสำเร็จ");
+
                 //แสดงข้อมูลหลังการคลิกปุ่ม
-                List<Customer> customersForShow = CustomerData.GetData();
+                List<Customer> customersForShow = CustomerData.GetDataCustomers();
                 customersListView.ItemsSource = customersForShow;
             }
         }
 
         // -----------------------------------------------------------------------------------------------------------
-        // สำหรับ กดเพื่อเพิ่มข้อมูลลูกค้า--------------------------------------------------------------------------------------
+        // สำหรับ กด ListView เพื่อแสดงข้อมูลลูกค้าใน Text Box-----------------------------------------------------------------
         private void customersListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (customersListView.SelectedItem is Customer selectedCustomer)

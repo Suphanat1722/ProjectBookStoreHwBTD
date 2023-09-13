@@ -40,7 +40,8 @@ namespace ProjectBookStoreHw
                 SqliteCommand insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
 
-                insertCommand.CommandText = "INSERT INTO Books (ISBN,Title, Description, Price) VALUES (@ISBN,@Title,@Description,@Price);";
+                insertCommand.CommandText = "INSERT INTO Books (ISBN,Title, Description, Price) " +
+                                            "VALUES (@ISBN,@Title,@Description,@Price);";
                 insertCommand.Parameters.AddWithValue("@ISBN", inputIsbn);
                 insertCommand.Parameters.AddWithValue("@Title", inputTitle);
                 insertCommand.Parameters.AddWithValue("@Description", inputDescription);
@@ -128,8 +129,8 @@ namespace ProjectBookStoreHw
         }     
 
         // -----------------------------------------------------------------------------------------------------------
-        // สำหรับ แก้ไขข้อมูลหนังสือ------------------------------------------------------------------------------------------
-        public static void UpdateBook(string newTitle, string newDescription, decimal newPrice)
+        // สำหรับ แก้ไขข้อมูลหนังสือ-----------------------------------------------------------------------------------------
+        public static void UpdateBook(string inputIsbn,string newTitle, string newDescription, decimal newPrice)
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
@@ -139,6 +140,7 @@ namespace ProjectBookStoreHw
                 updateCommand.Connection = db;
 
                 updateCommand.CommandText = "UPDATE Books SET Title = @Title, Description = @Description, Price = @Price WHERE ISBN = @ISBN;";
+                updateCommand.Parameters.AddWithValue("@ISBN", inputIsbn);
                 updateCommand.Parameters.AddWithValue("@Title", newTitle);
                 updateCommand.Parameters.AddWithValue("@Description", newDescription);
                 updateCommand.Parameters.AddWithValue("@Price", newPrice);

@@ -9,6 +9,8 @@ namespace ProjectBookStoreHw
 {
     class CustomerData
     {
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ สร้าง Databese ชื่อว่า Customers--------------------------------------------------------------------------
         public static void InitializeCustomerDatabase()
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
@@ -27,6 +29,8 @@ namespace ProjectBookStoreHw
             }
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ เพิ่มข้อมูลลูกค้า-------------------------------------------------------------------------------------------
         public static void AddData(string inputId,string inputName, string inputAddress, string inputEmail)
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
@@ -49,7 +53,9 @@ namespace ProjectBookStoreHw
             }
         }
 
-        public static List<Customer> GetData()
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ ดึงข้อมูลลูกค้า--------------------------------------------------------------------------------------------
+        public static List<Customer> GetDataCustomers()
         {
             List<Customer> entries = new List<Customer>();
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
@@ -80,7 +86,9 @@ namespace ProjectBookStoreHw
             return entries;
         }
 
-        public static List<Customer> SearchCustomers(string keyword)
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ ค้นหารายการลูกค้า----------------------------------------------------------------------------------------
+        public static List<Customer> SearchCustomer(string keyword)
         {
             List<Customer> result = new List<Customer>();
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
@@ -90,7 +98,11 @@ namespace ProjectBookStoreHw
                 SqliteCommand searchCommand = new SqliteCommand();
                 searchCommand.Connection = db;
 
-                searchCommand.CommandText = "SELECT Customer_Id, Customer_Name, Address, Email FROM Customers WHERE Customer_Id LIKE @Keyword OR Customer_Name LIKE @Keyword;";
+                searchCommand.CommandText = "SELECT Customer_Id, Customer_Name, Address, Email " +
+                                            "FROM Customers " +
+                                            "WHERE Customer_Id LIKE @Keyword " +
+                                            "OR Customer_Name LIKE @Keyword;";
+
                 searchCommand.Parameters.AddWithValue("@Keyword", $"%{keyword}%");
 
                 SqliteDataReader query = searchCommand.ExecuteReader();
@@ -112,14 +124,14 @@ namespace ProjectBookStoreHw
 
                     result.Add(customer);
                 }
-
                 db.Close();
             }
-
             return result;
         }
 
-        public static void UpdateCustomer(string customerId, string inputName, string inputAddress, string inputEmail)
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ แก้ไขข้อมูลลูกค้า------------------------------------------------------------------------------------------
+        public static void UpdateCustomer(string inputCus_Id,string newName, string newAddress, string newEmail)
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
@@ -128,11 +140,16 @@ namespace ProjectBookStoreHw
                 SqliteCommand updateCommand = new SqliteCommand();
                 updateCommand.Connection = db;
 
-                updateCommand.CommandText = "UPDATE Customers SET Customer_Name = @Customer_Name, Address = @Address, Email = @Email WHERE Customer_Id = @Customer_Id;";
-                updateCommand.Parameters.AddWithValue("@Customer_Id", customerId);
-                updateCommand.Parameters.AddWithValue("@Customer_Name", inputName);
-                updateCommand.Parameters.AddWithValue("@Address", inputAddress);
-                updateCommand.Parameters.AddWithValue("@Email", inputEmail);
+                updateCommand.CommandText = "UPDATE Customers SET " +
+                            "Customer_Name = @Customer_Name," +
+                            "Address = @Address," +
+                            "Email = @Email " +
+                            "WHERE Customer_Id = @Customer_Id;";
+
+                updateCommand.Parameters.AddWithValue("@Customer_Id", inputCus_Id);
+                updateCommand.Parameters.AddWithValue("@Customer_Name", newName);
+                updateCommand.Parameters.AddWithValue("@Address", newAddress);
+                updateCommand.Parameters.AddWithValue("@Email", newEmail);
 
                 updateCommand.ExecuteNonQuery();
 
@@ -140,6 +157,8 @@ namespace ProjectBookStoreHw
             }
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ ลบรายการลุกค้า------------------------------------------------------------------------------------------
         public static void DeleteCustomer(string customer_Id)
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))

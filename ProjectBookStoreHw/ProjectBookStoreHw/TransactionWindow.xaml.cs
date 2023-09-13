@@ -28,11 +28,8 @@ namespace ProjectBookStoreHw
             testListView.ItemsSource = transactionForShow;
         }
 
-        private void ButtonApply_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ เพิ่มข้อมูลการซื้อหนังสือ-------------------------------------------------------------------------------------
         private void txtISBN_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (int.TryParse(txtISBN.Text, out int isbn))
@@ -47,6 +44,8 @@ namespace ProjectBookStoreHw
             }
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ เพิ่มข้อมูลการซื้อหนังสือ-------------------------------------------------------------------------------------
         private void buttonApply_Click_1(object sender, RoutedEventArgs e)
         {
             List<Book> selectedBooks = BookData.GetPrice(int.Parse(txtISBN.Text));
@@ -74,6 +73,9 @@ namespace ProjectBookStoreHw
             }
         }
 
+
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ เพิ่มข้อมูลการซื้อหนังสือ-------------------------------------------------------------------------------------
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
             if (testListView.SelectedItem is Transaction selectedBook)

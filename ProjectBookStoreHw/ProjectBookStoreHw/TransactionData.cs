@@ -10,7 +10,7 @@ namespace ProjectBookStoreHw
     class TransactionData
     {
         // -----------------------------------------------------------------------------------------------------------
-        // สร้าง Databese ชื่อว่า Transactions------------------------------------------------------------------------------------
+        // สร้าง Databese ชื่อว่า Transactions-----------------------------------------------------------------------------
         public static void InitializeTransactionDatabase()
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
@@ -19,8 +19,8 @@ namespace ProjectBookStoreHw
                 string tableCommand =
                 "CREATE TABLE IF NOT " +
                 "EXISTS Transactions(" +
-                    "No INTEGER PRIMARY KEY," +
-                    "ISBN INTEGER," + 
+                    "No varchar(255) PRIMARY KEY," +
+                    "ISBN varchar(255)," + 
                     "Customer_Id varchar(255)," +
                     "Quatity INTEGER," + 
                     "Total_Price DECIMAL)";
@@ -32,7 +32,7 @@ namespace ProjectBookStoreHw
 
 
         // -----------------------------------------------------------------------------------------------------------
-        // สำหรับ เพิ่มข้อมูลการซื้อหนังสือ--------------------------------------------------------------------------------------
+        // สำหรับ เพิ่มข้อมูลการซื้อหนังสือ-------------------------------------------------------------------------------------
         public static void AddData(int inputQuantity,decimal inputTotal)
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
@@ -102,39 +102,6 @@ namespace ProjectBookStoreHw
                 deleteCommand.ExecuteNonQuery();
                 db.Close();
             }
-        }
-
-        public static List<Transaction> JoinData()
-        {
-            List<Transaction> transactions = new List<Transaction>();
-
-            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
-            {
-                db.Open();
-
-                string query = "SELECT Transactions.ISBN, Transactions.Customer_Id, Transactions.Quatity, Transactions.Total_Price" +
-                               "FROM Transactions " +
-                               "INNER JOIN Books ON Transactions.ISBN = Books.ISBN " +
-                               "INNER JOIN Customers ON Transactions.Customer_Id = Customers.Customer_Id";
-
-                SqliteCommand command = new SqliteCommand(query, db);
-                SqliteDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Transaction transaction = new Transaction
-                    {
-                        ISBN = reader.GetInt32(0),
-                        Customer_Id = reader.GetString(1),
-                        Quatity = reader.GetInt32(2),
-                        Total_Price = reader.GetDecimal(3)
-                    };
-
-                    transactions.Add(transaction);
-                }
-                reader.Close();
-            }
-            return transactions;
-        }
+        }       
     }
 }
