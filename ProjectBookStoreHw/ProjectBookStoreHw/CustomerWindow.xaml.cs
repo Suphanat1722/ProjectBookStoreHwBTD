@@ -26,11 +26,22 @@ namespace ProjectBookStoreHw
             customersListView.ItemsSource = customerForShow;
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ กดเพื่อเพิ่มข้อมูลลูกค้า--------------------------------------------------------------------------------------
         private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if (txtCustomer_Id.Text != "" && txtCustomer_Name.Text != "" && txtAddress.Text != "" && txtEmail.Text != "")
+            string inputCus_Id = txtCustomer_Id.Text;
+            string inputCus_Name = txtCustomer_Name.Text;
+            string inputAddress = txtAddress.Text;
+            string inputEmail = txtEmail.Text;
+
+            //เช็คว่าใน textBox ต้องไม่ว่าง
+            if (!string.IsNullOrEmpty(inputCus_Id)&&
+                !string.IsNullOrEmpty(inputCus_Name)&&
+                !string.IsNullOrEmpty(inputAddress)&&
+                !string.IsNullOrEmpty(inputEmail))
             {
-                CustomerData.AddData(txtCustomer_Id.Text , txtCustomer_Name.Text, txtAddress.Text, txtEmail.Text);
+                CustomerData.AddData(inputCus_Id, inputCus_Name, inputAddress, inputEmail);
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
                 List<Customer> customersForShow = CustomerData.GetData();
@@ -44,10 +55,12 @@ namespace ProjectBookStoreHw
             }
             else
             {
-                MessageBox.Show(" Enter ID and Name and Address and Email ");
+                MessageBox.Show("กรุณากรอกข้อมูลให้ครบ ");
             }
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ กดเพื่อค้นหาข้อมูลลูกค้า-------------------------------------------------------------------------------------
         private void ButtonSearchCustomers_Click(object sender, RoutedEventArgs e)
         {
             string keyword = txtCustomer_Id.Text;
@@ -60,10 +73,12 @@ namespace ProjectBookStoreHw
             else
             {
                 // ถ้าไม่มีคำค้นหาในช่องค้นหา
-                MessageBox.Show("Enter a keyword to search for Customer.");
+                MessageBox.Show("กรุณากรอก ID");
             }
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ กดเพื่อเพิ่มข้อมูลลูกค้า--------------------------------------------------------------------------------------
         private void ButtonUpdateCustomer_Click(object sender, RoutedEventArgs e)
         {
             if (customersListView.SelectedItem is Customer selectedCustomer)
@@ -88,6 +103,8 @@ namespace ProjectBookStoreHw
             }
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ กดเพื่อเพิ่มข้อมูลลูกค้า--------------------------------------------------------------------------------------
         private void buttonDeleteCustomer_Click(object sender, RoutedEventArgs e)
         {
             if (customersListView.SelectedItem is Customer selectedCustomer)
@@ -100,6 +117,8 @@ namespace ProjectBookStoreHw
             }
         }
 
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ กดเพื่อเพิ่มข้อมูลลูกค้า--------------------------------------------------------------------------------------
         private void customersListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (customersListView.SelectedItem is Customer selectedCustomer)

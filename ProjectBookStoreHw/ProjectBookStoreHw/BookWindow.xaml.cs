@@ -23,7 +23,7 @@ namespace ProjectBookStoreHw
             BookData.InitializeBookDatabase();
 
             //แสดงข้อมูลหนังสือบน List View
-            List<Book> booksForShow = BookData.GetData();
+            List<Book> booksForShow = BookData.GetBooksData();
             booksListView.ItemsSource = booksForShow;
 
         }
@@ -46,7 +46,7 @@ namespace ProjectBookStoreHw
                 BookData.AddData(inputIsbn, inputTitle, inputDescription,decimal.Parse(inputPrice));
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
-                List<Book> booksForShow = BookData.GetData();
+                List<Book> booksForShow = BookData.GetBooksData();
                 booksListView.ItemsSource = booksForShow;
 
                 MessageBox.Show("เพิ่มข้อมูลเรียบร้อย");
@@ -67,12 +67,12 @@ namespace ProjectBookStoreHw
         // สำหรับ ลบข้อมูลหนังสือ-------------------------------------------------------------------------------------------
         private void buttonDeleteBook_Click(object sender, RoutedEventArgs e)
         {
-            if (booksListView.SelectedItem is Book selectedBook)
+            if (booksListView.SelectedItem is Book selectedBook)//เช็คว่าใน booksListView.SelectedItem เป็นข้อมูลเดียวกับ Book ไหม ถ้ามี selectedBook จะเป็น true 
             {
                 BookData.DeleteBook(selectedBook.ISBN);
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
-                List<Book> booksForShow = BookData.GetData();
+                List<Book> booksForShow = BookData.GetBooksData();
                 booksListView.ItemsSource = booksForShow;
 
                 MessageBox.Show("ลบรายการหนังสือเรียบร้อย");
@@ -83,16 +83,21 @@ namespace ProjectBookStoreHw
         // สำหรับ ค้นหาข้อมูลหนังสือ-----------------------------------------------------------------------------------------
         private void ButtonSearchBook_Click(object sender, RoutedEventArgs e)
         {
-            string keyword = txtTitleBook.Text;
+            string keyword_Isbn = txtIsbn.Text;
+            string keyword_Name = txtTitleBook.Text;
 
-            if (!string.IsNullOrEmpty(keyword))
+            if (!string.IsNullOrEmpty(keyword_Isbn))
             {
-                List<Book> searchResults = BookData.SearchBooks(keyword);
+                List<Book> searchResults = BookData.SearchBook(keyword_Isbn);
+                booksListView.ItemsSource = searchResults;
+            }else if (!string.IsNullOrEmpty(keyword_Name))
+            {
+                List<Book> searchResults = BookData.SearchBook(keyword_Name);
                 booksListView.ItemsSource = searchResults;
             }
             else
             {
-                MessageBox.Show("ไม่มีข้อมูลที่คุณค้นหา");
+                MessageBox.Show("กรุณากรอก ID หรือ ชื่อหนังชื่อ ให้ถูกต้อง");
             }
         }
 
@@ -100,21 +105,19 @@ namespace ProjectBookStoreHw
         // สำหรับ เปลี่ยนข้อมูลหนังสือ------------------------------------------------------------------------------------------
         private void ButtonUpdateBook_Click(object sender, RoutedEventArgs e)
         {
-            string newIsbn = txtIsbn.Text;
             string newTitle = txtTitleBook.Text;
             string newDescription = txtDescriptionBook.Text;
             string newPrice = txtPriceBook.Text;
 
             //เช็คว่าใน TextBox ต้องไม่ว่าง
-            if (!string.IsNullOrEmpty(newIsbn) &&
-                !string.IsNullOrEmpty(newTitle) &&
+            if (!string.IsNullOrEmpty(newTitle) &&
                 !string.IsNullOrEmpty(newDescription) &&
                 !string.IsNullOrEmpty(newPrice))
             {
-                BookData.UpdateBook(newIsbn, newTitle, newDescription, decimal.Parse(newPrice));
+                BookData.UpdateBook(newTitle, newDescription, decimal.Parse(newPrice));
 
                 //แสดงข้อมูลหลังการคลิกปุ่ม
-                List<Book> booksForShow = BookData.GetData();
+                List<Book> booksForShow = BookData.GetBooksData();
                 booksListView.ItemsSource = booksForShow;
 
                 MessageBox.Show("เปลี่ยนข้อมูลเรียบร้อย");

@@ -56,7 +56,7 @@ namespace ProjectBookStoreHw
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ ดึงข้อมูลหนังสือ-------------------------------------------------------------------------------------------
 
-        public static List<Book> GetData()
+        public static List<Book> GetBooksData()
         {
             List<Book> entries = new List<Book>();
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
@@ -89,7 +89,7 @@ namespace ProjectBookStoreHw
 
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ ค้นหาข้อมูลหนังสือ-----------------------------------------------------------------------------------------
-        public static List<Book> SearchBooks(string keyword)
+        public static List<Book> SearchBook(string keyword)
         {
             List<Book> result = new List<Book>();
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
@@ -99,7 +99,8 @@ namespace ProjectBookStoreHw
                 SqliteCommand searchCommand = new SqliteCommand();
                 searchCommand.Connection = db;
 
-                searchCommand.CommandText = "SELECT ISBN, Title, Description, Price FROM Books WHERE Title LIKE @Keyword OR Description LIKE @Keyword;";
+                // ใช้พารามิเตอร์เดียวสำหรับการค้นหาด้วย ISBN และชื่อหนังสือ
+                searchCommand.CommandText = "SELECT ISBN, Title, Description, Price FROM Books WHERE ISBN LIKE @Keyword OR Title LIKE @Keyword;";
                 searchCommand.Parameters.AddWithValue("@Keyword", $"%{keyword}%");
 
                 SqliteDataReader query = searchCommand.ExecuteReader();
@@ -124,11 +125,11 @@ namespace ProjectBookStoreHw
                 db.Close();
             }
             return result;
-        }
+        }     
 
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ แก้ไขข้อมูลหนังสือ------------------------------------------------------------------------------------------
-        public static void UpdateBook(string newIsbn, string newTitle, string newDescription, decimal newPrice)
+        public static void UpdateBook(string newTitle, string newDescription, decimal newPrice)
         {
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
@@ -137,8 +138,7 @@ namespace ProjectBookStoreHw
                 SqliteCommand updateCommand = new SqliteCommand();
                 updateCommand.Connection = db;
 
-                updateCommand.CommandText = "UPDATE Books SET ISBN = @ISBN,Title = @Title, Description = @Description, Price = @Price WHERE ISBN = @ISBN;";
-                updateCommand.Parameters.AddWithValue("@ISBN", newIsbn);
+                updateCommand.CommandText = "UPDATE Books SET Title = @Title, Description = @Description, Price = @Price WHERE ISBN = @ISBN;";
                 updateCommand.Parameters.AddWithValue("@Title", newTitle);
                 updateCommand.Parameters.AddWithValue("@Description", newDescription);
                 updateCommand.Parameters.AddWithValue("@Price", newPrice);

@@ -5,34 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectBookStoreHw"
         mc:Ignorable="d"
-        Title="CustomerWindow" Height="500" Width="850">
+        Title="CustomerWindow" Height="500" Width="1280">
     <Grid>
 
-        <Label Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,40,0,0" FontSize="20"/>
-        <TextBox x:Name="txtCustomer_Id" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="213,39,0,0" Height="30"/>
+        <Label Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,58,0,0" FontSize="20"/>
+        <TextBox x:Name="txtCustomer_Id" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="213,57,0,0" Height="30"/>
 
-        <Label Content="ชื่อ - นามสกุล" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,80,0,0" FontSize="20"/>
-        <TextBox x:Name="txtCustomer_Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Height="30" Margin="213,86,0,0" TextWrapping="Wrap"/>
+        <Label Content="ชื่อ - นามสกุล" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,98,0,0" FontSize="20"/>
+        <TextBox x:Name="txtCustomer_Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Height="30" Margin="213,104,0,0" TextWrapping="Wrap"/>
 
-        <Label Content="ที่อยู่" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,126,0,0" FontSize="20"/>
-        <TextBox x:Name="txtAddress" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="213,136,0,0" Height="45"/>
+        <Label Content="ที่อยู่" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,144,0,0" FontSize="20"/>
+        <TextBox x:Name="txtAddress" HorizontalAlignment="Left" VerticalAlignment="Top" Width="457" Margin="213,154,0,0" Height="63"/>
 
-        <Button x:Name="ButtonAddCustomer" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="685,43,0,0" Click="ButtonAddCustomer_Click" Height="30"/>
-        <Button x:Name="buttonDeleteCustomer" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="685,236,0,0" Click="buttonDeleteCustomer_Click" Height="30"/>
-        <ListView x:Name="customersListView" HorizontalAlignment="Left" Height="150" Margin="10,292,0,0" VerticalAlignment="Top" Width="800                   " SelectionChanged="customersListView_SelectionChanged">
+        <Button x:Name="ButtonAddCustomer" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="722,61,0,0" Click="ButtonAddCustomer_Click" Height="30"/>
+        <Button x:Name="buttonDeleteCustomer" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="722,254,0,0" Click="buttonDeleteCustomer_Click" Height="30"/>
+        <ListView x:Name="customersListView" HorizontalAlignment="Left" Height="100" Margin="35,327,0,0" VerticalAlignment="Top" Width="1200                   " SelectionChanged="customersListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Customer_Id}" Width="50"/>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Customer_Name}" Width="200"/>
-                    <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="350"/>
-                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="200"/>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Customer_Id}" Width="100"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Customer_Name}" Width="250"/>
+                    <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="600"/>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="250"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="ButtonSearchCustomers" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="685,106,0,0" Click="ButtonSearchCustomers_Click" Height="30"/>
-        <Button x:Name="ButtonUpdateCustomer" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="685,169,0,0" Click="ButtonUpdateCustomer_Click" RenderTransformOrigin="0.225,0.492" Height="30"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Height="30" Margin="213,198,0,0" TextWrapping="Wrap"/>
-        <Label Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,191,0,0" FontSize="20"/>
+        <Button x:Name="ButtonSearchCustomers" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="722,124,0,0" Click="ButtonSearchCustomers_Click" Height="30"/>
+        <Button x:Name="ButtonUpdateCustomer" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="722,187,0,0" Click="ButtonUpdateCustomer_Click" RenderTransformOrigin="0.225,0.492" Height="30"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Height="30" Margin="213,240,0,0" TextWrapping="Wrap"/>
+        <Label Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,233,0,0" FontSize="20"/>
 
     </Grid>
 </Window>
