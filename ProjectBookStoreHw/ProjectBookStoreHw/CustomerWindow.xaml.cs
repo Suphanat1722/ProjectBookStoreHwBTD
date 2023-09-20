@@ -49,10 +49,10 @@ namespace ProjectBookStoreHw
                 customersListView.ItemsSource = customersForShow;
 
                 //เมื่อกด Add จะ clear ข้อมูลใน textBox
-                txtCustomer_Id.Text = "";
-                txtCustomer_Name.Text = "";
-                txtAddress.Text = "";
-                txtEmail.Text = "";
+                txtCustomer_Id.Clear();
+                txtCustomer_Name.Clear();
+                txtAddress.Clear();
+                txtEmail.Clear();
             }
             else
             {
@@ -107,10 +107,10 @@ namespace ProjectBookStoreHw
                 customersListView.ItemsSource = customersForShow;
 
                 // เคลียร์ข้อมูลใน TextBox
-                txtCustomer_Id.Text = "";
-                txtCustomer_Name.Text = "";
-                txtAddress.Text = "";
-                txtEmail.Text = "";
+                txtCustomer_Id.Clear();
+                txtCustomer_Name.Clear();
+                txtAddress.Clear();
+                txtEmail.Clear();
             }
             else
             {

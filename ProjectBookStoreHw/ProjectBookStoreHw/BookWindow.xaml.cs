@@ -25,7 +25,6 @@ namespace ProjectBookStoreHw
             //แสดงข้อมูลหนังสือบน List View
             List<Book> booksForShow = BookData.GetBooksData();
             booksListView.ItemsSource = booksForShow;
-
         }
 
         // -----------------------------------------------------------------------------------------------------------
@@ -52,9 +51,9 @@ namespace ProjectBookStoreHw
                 MessageBox.Show("เพิ่มข้อมูลเรียบร้อย");
 
                 //เมื่อกด Add จะ clear ข้อมูลใน textBox
-                txtTitleBook.Text = "";
-                txtDescriptionBook.Text = "";
-                txtPriceBook.Text = "";
+                txtTitleBook.Clear();
+                txtDescriptionBook.Clear();
+                txtPriceBook.Clear();
             }
             else
             {

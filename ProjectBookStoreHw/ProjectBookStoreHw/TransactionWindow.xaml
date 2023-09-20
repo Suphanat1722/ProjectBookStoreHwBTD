@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Title="TransactionWindow" Height="720" Width="1280">
     <Grid>
-        <Label Content="ISBN" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,60,0,0" FontSize="20"/>
-        <TextBox x:Name="txtISBN" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="123,65,0,0" Height="30" TextChanged="txtISBN_TextChanged"/>
+        <Label Content="ISBN" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,102,0,0" FontSize="20"/>
+        <TextBox x:Name="txtISBN" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="123,107,0,0" Height="30" TextChanged="txtISBN_TextChanged"/>
 
-        <Label Content="จำนวนหนังสือ" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,284,0,0" FontSize="20"/>
-        <TextBox x:Name="txtQuatity" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="30" Margin="226,289,0,0" TextWrapping="Wrap"/>
+        <Label Content="จำนวนหนังสือ" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,326,0,0" FontSize="20"/>
+        <TextBox x:Name="txtQuatity" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="30" Margin="226,331,0,0" TextWrapping="Wrap"/>
 
-        <Label Content="หมายเลขสมาชิก" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,338,0,0" FontSize="20"/>
-        <TextBox x:Name="txtCus_Id" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="226,345,0,0" Height="30"/>
-        <Button x:Name="buttonApply" Content="ยืนยัน" HorizontalAlignment="Left" Margin="66,458,0,0" VerticalAlignment="Top" Width="100" Height="40" FontSize="20" Click="buttonApply_Click_1"/>
-        <ListView x:Name="testListView" HorizontalAlignment="Left" Height="300" Margin="574,298,0,0" VerticalAlignment="Top" Width="450">
+        <Label Content="หมายเลขสมาชิก" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,367,0,0" FontSize="20"/>
+        <TextBox x:Name="txtCus_Id" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="226,374,0,0" Height="30"/>
+        <Button x:Name="buttonApply" Content="ยืนยันการสั่งซื้อ" HorizontalAlignment="Left" Margin="40,439,0,0" VerticalAlignment="Top" Width="250" Height="68" FontSize="20" Click="buttonApply_Click_1"/>
+        <ListView x:Name="testListView" HorizontalAlignment="Left" Height="80" Margin="790,310,0,0" VerticalAlignment="Top" Width="450">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="No" DisplayMemberBinding="{Binding No}" Width="50"/>
@@ -27,17 +27,17 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="buttonDelete" Content="ลบ" HorizontalAlignment="Left" Margin="206,458,0,0" VerticalAlignment="Top" Width="100" Height="40" FontSize="20" Click="buttonDelete_Click"/>
-        <ListView x:Name="transactionListView" HorizontalAlignment="Left" Height="100" Margin="40,130,0,0" VerticalAlignment="Top" Width="1200">
+        <ListView x:Name="transactionListView" HorizontalAlignment="Left" Height="100" Margin="40,172,0,0" VerticalAlignment="Top" Width="1200">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ISBN" DisplayMemberBinding="{Binding ISBN}" Width="150"/>
-                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="300"/>
-                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="600"/>
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="150"/>
+                    <GridViewColumn Header="รหัสสินค้า" DisplayMemberBinding="{Binding ISBN}" Width="150"/>
+                    <GridViewColumn Header="ชื่อหนังสือ" DisplayMemberBinding="{Binding Title}" Width="300"/>
+                    <GridViewColumn Header="รายละเอียด" DisplayMemberBinding="{Binding Description}" Width="600"/>
+                    <GridViewColumn Header="ราคา" DisplayMemberBinding="{Binding Price}" Width="150"/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="buttonDelete" Content="ลบ" HorizontalAlignment="Left" Margin="790,424,0,0" VerticalAlignment="Top" Width="125" Height="50" FontSize="20" Click="buttonDelete_Click_1"/>
 
     </Grid>
 </Window>

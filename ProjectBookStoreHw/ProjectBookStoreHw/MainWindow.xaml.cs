@@ -19,26 +19,25 @@ namespace ProjectBookStoreHw
     {
         public MainWindow()
         {
-            
-
+           
         }
 
         private void ButtonToBook_Click(object sender, RoutedEventArgs e)
         {
             BookWindow bookWindow = new BookWindow();
-            bookWindow.ShowDialog();
+            bookWindow.Show();
         }
 
         private void ButtonToCustomer_Click(object sender, RoutedEventArgs e)
         {
             CustomerWindow customerWindow = new CustomerWindow();
-            customerWindow.ShowDialog();
+            customerWindow.Show();
         }
 
         private void ButtonToTransaction_Click(object sender, RoutedEventArgs e)
         {
             TransactionWindow transactionWindow = new TransactionWindow();
-            transactionWindow.ShowDialog();
+            transactionWindow.Show();
         }
     }
 }

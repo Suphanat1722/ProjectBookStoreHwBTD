@@ -37,16 +37,21 @@ namespace ProjectBookStoreHw
             {
                 db.Open();
 
-                SqliteCommand insertCommand = new SqliteCommand();
-                insertCommand.Connection = db;
-
-                insertCommand.CommandText = "INSERT INTO Books (ISBN,Title, Description, Price) " +
-                                            "VALUES (@ISBN,@Title,@Description,@Price);";
+                SqliteCommand insertCommand = new SqliteCommand(
+                    "INSERT INTO Books (" +
+                        "ISBN," +
+                        "Title, " +
+                        "Description, " +
+                        "Price) " +
+                    "VALUES (" +
+                        "@ISBN," +
+                        "@Title," +
+                        "@Description," +
+                        "@Price);");
                 insertCommand.Parameters.AddWithValue("@ISBN", inputIsbn);
                 insertCommand.Parameters.AddWithValue("@Title", inputTitle);
                 insertCommand.Parameters.AddWithValue("@Description", inputDescription);
                 insertCommand.Parameters.AddWithValue("@Price",inputPrice);
-
 
                 insertCommand.ExecuteNonQuery();
 
@@ -56,14 +61,19 @@ namespace ProjectBookStoreHw
 
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ ดึงข้อมูลหนังสือ-------------------------------------------------------------------------------------------
-
         public static List<Book> GetBooksData()
         {
             List<Book> entries = new List<Book>();
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
-                SqliteCommand selectCommand = new SqliteCommand("SELECT ISBN, Title, Description, Price FROM Books", db);
+                SqliteCommand selectCommand = new SqliteCommand(
+                    "SELECT " +
+                        "ISBN, " +
+                        "Title, " +
+                        "Description, " +
+                        "Price " +
+                    "FROM Books", db);
                 SqliteDataReader query = selectCommand.ExecuteReader();
                 while (query.Read())
                 {
@@ -90,19 +100,23 @@ namespace ProjectBookStoreHw
 
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ ค้นหาข้อมูลหนังสือ-----------------------------------------------------------------------------------------
-        public static List<Book> SearchBook(string keyword)
+        public static List<Book> SearchBook(string InputKeyword)
         {
-            List<Book> result = new List<Book>();
+            List<Book> entries = new List<Book>();
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
 
-                SqliteCommand searchCommand = new SqliteCommand();
-                searchCommand.Connection = db;
-
-                // ใช้พารามิเตอร์เดียวสำหรับการค้นหาด้วย ISBN และชื่อหนังสือ
-                searchCommand.CommandText = "SELECT ISBN, Title, Description, Price FROM Books WHERE ISBN LIKE @Keyword OR Title LIKE @Keyword;";
-                searchCommand.Parameters.AddWithValue("@Keyword",keyword);
+                SqliteCommand searchCommand = new SqliteCommand(
+                    "SELECT " +
+                        "ISBN, " +
+                        "Title, " +
+                        "Description, " +
+                        "Price " +
+                    "FROM Books " +
+                    "WHERE ISBN LIKE @Keyword " +
+                    "OR Title LIKE @Keyword;", db);
+                searchCommand.Parameters.AddWithValue("@Keyword",InputKeyword);
 
                 SqliteDataReader query = searchCommand.ExecuteReader();
                 while (query.Read())
@@ -121,11 +135,11 @@ namespace ProjectBookStoreHw
                     if (!query.IsDBNull(3))
                         book.Price = query.GetDecimal(3);
 
-                    result.Add(book);
+                    entries.Add(book);
                 }
                 db.Close();
             }
-            return result;
+            return entries;
         }     
 
         // -----------------------------------------------------------------------------------------------------------
@@ -136,10 +150,12 @@ namespace ProjectBookStoreHw
             {
                 db.Open();
 
-                SqliteCommand updateCommand = new SqliteCommand();
-                updateCommand.Connection = db;
-
-                updateCommand.CommandText = "UPDATE Books SET Title = @Title, Description = @Description, Price = @Price WHERE ISBN = @ISBN;";
+                SqliteCommand updateCommand = new SqliteCommand(
+                    "UPDATE Books SET " +
+                        "Title = @Title, " +
+                        "Description = @Description, " +
+                        "Price = @Price " +
+                    "WHERE ISBN = @ISBN;", db);
                 updateCommand.Parameters.AddWithValue("@ISBN", inputIsbn);
                 updateCommand.Parameters.AddWithValue("@Title", newTitle);
                 updateCommand.Parameters.AddWithValue("@Description", newDescription);
@@ -159,10 +175,9 @@ namespace ProjectBookStoreHw
             {
                 db.Open();
 
-                SqliteCommand deleteCommand = new SqliteCommand();
-                deleteCommand.Connection = db;
-
-                deleteCommand.CommandText = "DELETE FROM Books WHERE ISBN = @ISBN;";
+                SqliteCommand deleteCommand = new SqliteCommand(
+                    "DELETE FROM Books " +
+                    "WHERE ISBN = @ISBN;", db);
                 deleteCommand.Parameters.AddWithValue("@ISBN", bookISBN);
 
                 deleteCommand.ExecuteNonQuery();
@@ -171,39 +186,49 @@ namespace ProjectBookStoreHw
             }
         }
 
-        // -----------------------------------------------------------------------------------------------------------
-        // สำหรับ ดึงข้อมูลหนังสือด้วยเลข ISBN--------------------------------------------------------------------------------
-        public static List<Book> GetBooksByISBN(string inputIsbn)
-        {
-            List<Book> books = new List<Book>();
 
-            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ ดึงข้อมูลหนังสือด้วย ISBN-----------------------------------------------------------------------------------
+        public static List<Book> GetBookByISBN(string inputIsbn)
+        {
+            List<Book> entries = new List<Book>();
+            using (SqliteConnection db = new SqliteConnection($"Filename = BookStoreDatabase.db"))
             {
                 db.Open();
+                
+                SqliteCommand selectCommand = new SqliteCommand(
+                    "SELECT  " +
+                        "ISBN, " +
+                        "Title, " +
+                        "Description, " +
+                        "Price " +
+                    "FROM Books " +
+                    "WHERE ISBN = @ISBN", db);
+                selectCommand.Parameters.AddWithValue("@ISBN", inputIsbn);
 
-                string query = "SELECT ISBN, Title, Description, Price FROM Books WHERE ISBN = @ISBN";
-                SqliteCommand command = new SqliteCommand(query, db);
-                command.Parameters.AddWithValue("@ISBN", inputIsbn);
-
-                SqliteDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                SqliteDataReader query = selectCommand.ExecuteReader();
+                while (query.Read())
                 {
-                    Book book = new Book
-                    {
-                        ISBN = reader.GetString(0),
-                        Title = reader.GetString(1),
-                        Description = reader.GetString(2),
-                        Price = reader.GetDecimal(3)
-                    };
-                    books.Add(book);
+                    Book book = new Book();
+
+                    if (!query.IsDBNull(0))
+                        book.ISBN = query.GetString(0);
+
+                    if (!query.IsDBNull(1))
+                        book.Title = query.GetString(1);
+
+                    if (!query.IsDBNull(2))
+                        book.Description = query.GetString(2);
+
+                    if (!query.IsDBNull(3))
+                        book.Price = query.GetDecimal(3);
+
+                    entries.Add(book);
+                    
                 }
-
-                reader.Close();
                 db.Close();
+                return entries;
             }
-
-            return books;
         }
 
         // -----------------------------------------------------------------------------------------------------------
@@ -215,7 +240,10 @@ namespace ProjectBookStoreHw
             {
                 db.Open();
                 // ใช้พารามิเตอร์ @isbn ใน SQL และกำหนดค่าตรงกับพารามิเตอร์
-                SqliteCommand selectCommand = new SqliteCommand("SELECT Price FROM Books WHERE ISBN = @ISBN", db);
+                SqliteCommand selectCommand = new SqliteCommand("" +
+                    "SELECT Price " +
+                    "FROM Books " +
+                    "WHERE ISBN = @ISBN", db);
                 selectCommand.Parameters.AddWithValue("@ISBN", InputIsbn);
 
                 SqliteDataReader query = selectCommand.ExecuteReader();
@@ -228,6 +256,33 @@ namespace ProjectBookStoreHw
                 db.Close();
             }
             return entries;
-        }    
+        }
+
+        // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ ดึงชื่อหนังสือด้วยเลข ISBN---------------------------------------------------------------------------------
+        public static List<Book> GetTitle(string InputIsbn)
+        {
+            List<Book> entries = new List<Book>();
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
+            {
+                db.Open();
+                // ใช้พารามิเตอร์ @isbn ใน SQL และกำหนดค่าตรงกับพารามิเตอร์
+                SqliteCommand selectCommand = new SqliteCommand("" +
+                    "SELECT Title " +
+                    "FROM Books " +
+                    "WHERE ISBN = @ISBN", db);
+                selectCommand.Parameters.AddWithValue("@ISBN", InputIsbn);
+
+                SqliteDataReader query = selectCommand.ExecuteReader();
+                while (query.Read())
+                {
+                    Book book = new Book();
+                    book.Title = query.GetString(0);
+                    entries.Add(book);
+                }
+                db.Close();
+            }
+            return entries;
+        }
     }
 }

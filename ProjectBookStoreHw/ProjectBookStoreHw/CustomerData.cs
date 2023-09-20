@@ -37,15 +37,21 @@ namespace ProjectBookStoreHw
             {
                 db.Open();
 
-                SqliteCommand insertCommand = new SqliteCommand();
-                insertCommand.Connection = db;
-
-                insertCommand.CommandText = "INSERT INTO Customers (Customer_Id,Customer_Name, Address, Email) VALUES (@Customer_Id,@Customer_Name,@Address,@Email);";
+                SqliteCommand insertCommand = new SqliteCommand(
+                    "INSERT INTO Customers (" +
+                        "Customer_Id," +
+                        "Customer_Name, " +
+                        "Address, " +
+                        "Email) " +
+                    "VALUES " +
+                        "(@Customer_Id," +
+                        "@Customer_Name," +
+                        "@Address," +
+                        "@Email);", db);
                 insertCommand.Parameters.AddWithValue("@Customer_Id", inputId);
                 insertCommand.Parameters.AddWithValue("@Customer_Name", inputName);
                 insertCommand.Parameters.AddWithValue("@Address", inputAddress);
                 insertCommand.Parameters.AddWithValue("@Email", inputEmail);
-
 
                 insertCommand.ExecuteNonQuery();
 
@@ -61,7 +67,13 @@ namespace ProjectBookStoreHw
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
-                SqliteCommand selectCommand = new SqliteCommand("SELECT Customer_Id, Customer_Name, Address, Email FROM Customers", db);
+                SqliteCommand selectCommand = new SqliteCommand(
+                    "SELECT " +
+                        "Customer_Id, " +
+                        "Customer_Name, " +
+                        "Address, " +
+                        "Email " +
+                    "FROM Customers", db);
                 SqliteDataReader query = selectCommand.ExecuteReader();
                 while (query.Read())
                 {
@@ -88,22 +100,23 @@ namespace ProjectBookStoreHw
 
         // -----------------------------------------------------------------------------------------------------------
         // สำหรับ ค้นหารายการลูกค้า----------------------------------------------------------------------------------------
-        public static List<Customer> SearchCustomer(string keyword)
+        public static List<Customer> SearchCustomer(string inputKeyword)
         {
             List<Customer> result = new List<Customer>();
             using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
             {
                 db.Open();
 
-                SqliteCommand searchCommand = new SqliteCommand();
-                searchCommand.Connection = db;
-
-                searchCommand.CommandText = "SELECT Customer_Id, Customer_Name, Address, Email " +
-                                            "FROM Customers " +
-                                            "WHERE Customer_Id LIKE @Keyword " +
-                                            "OR Customer_Name LIKE @Keyword;";
-
-                searchCommand.Parameters.AddWithValue("@Keyword",keyword);
+                SqliteCommand searchCommand = new SqliteCommand(
+                    "SELECT " +
+                        "Customer_Id, " +
+                        "Customer_Name, " +
+                        "Address, " +
+                        "Email " +
+                    "FROM Customers " +
+                    "WHERE Customer_Id LIKE @Keyword " +
+                    "OR Customer_Name LIKE @Keyword;", db);
+                searchCommand.Parameters.AddWithValue("@Keyword", inputKeyword);
 
                 SqliteDataReader query = searchCommand.ExecuteReader();
                 while (query.Read())
@@ -137,20 +150,16 @@ namespace ProjectBookStoreHw
             {
                 db.Open();
 
-                SqliteCommand updateCommand = new SqliteCommand();
-                updateCommand.Connection = db;
-
-                updateCommand.CommandText = "UPDATE Customers SET " +
-                            "Customer_Name = @Customer_Name," +
-                            "Address = @Address," +
-                            "Email = @Email " +
-                            "WHERE Customer_Id = @Customer_Id;";
-
+                SqliteCommand updateCommand = new SqliteCommand(
+                    "UPDATE Customers SET " +
+                        "Customer_Name = @Customer_Name," +
+                        "Address = @Address," +
+                        "Email = @Email " +
+                    "WHERE Customer_Id = @Customer_Id;");
                 updateCommand.Parameters.AddWithValue("@Customer_Id", inputCus_Id);
                 updateCommand.Parameters.AddWithValue("@Customer_Name", newName);
                 updateCommand.Parameters.AddWithValue("@Address", newAddress);
                 updateCommand.Parameters.AddWithValue("@Email", newEmail);
-
                 updateCommand.ExecuteNonQuery();
 
                 db.Close();
@@ -165,12 +174,10 @@ namespace ProjectBookStoreHw
             {
                 db.Open();
 
-                SqliteCommand deleteCommand = new SqliteCommand();
-                deleteCommand.Connection = db;
-
-                deleteCommand.CommandText = "DELETE FROM Customers WHERE Customer_Id = @Customer_Id;";
+                SqliteCommand deleteCommand = new SqliteCommand(
+                    "DELETE FROM Customers " +
+                    "WHERE Customer_Id = @Customer_Id;", db);
                 deleteCommand.Parameters.AddWithValue("@Customer_Id", customer_Id);
-
                 deleteCommand.ExecuteNonQuery();
 
                 db.Close();
