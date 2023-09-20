@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace ProjectBookStoreHw
 {
-    /// <summary>
-    /// Interaction logic for TransactionWindow.xaml
-    /// </summary>
     public partial class TransactionWindow : Window
     {
         public TransactionWindow()
@@ -67,16 +64,14 @@ namespace ProjectBookStoreHw
             testListView.ItemsSource = transactionForShow;
 
             //เลือกว่าจะพิมพ์ใบเสร็จหรือไม่
-            MessageBoxResult printBill = MessageBox.Show("บันทึกรายการสั่งซื้อเรียบร้อย", "พิมพ์ใบเสร็จหรือไม่", MessageBoxButton.YesNo);
+            MessageBoxResult printBill = MessageBox.Show("พิมพ์ใบเสร็จหรือไม่", "บันทึกรายการสั่งซื้อเรียบร้อย", MessageBoxButton.YesNo);
             if (printBill == MessageBoxResult.Yes)
             {
                 BillWindow billWindow = new BillWindow();
                 billWindow.Show();
             }
 
-            txtISBN.Clear();
-            txtCus_Id.Clear();
-            txtQuatity.Clear();
+
         }        
 
         // -----------------------------------------------------------------------------------------------------------

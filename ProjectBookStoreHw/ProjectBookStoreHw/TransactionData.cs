@@ -137,6 +137,37 @@ namespace ProjectBookStoreHw
         }
 
         // -----------------------------------------------------------------------------------------------------------
+        // สำหรับ ดึงข้อมูลหนังสือที่สั่งซื้อล่าสุด-------------------------------------------------------------------------------------------
+        public static List<Transaction> GetLastIsbn()
+        {
+            List<Transaction> entries = new List<Transaction>();
+            using (SqliteConnection db = new SqliteConnection($"Filename=BookStoreDatabase.db"))
+            {
+                db.Open();
+                SqliteCommand selectCommand = new SqliteCommand(
+                    "SELECT ISBN, Quatity " +
+                    "FROM Transactions " +
+                    "WHERE No = (SELECT MAX(No) FROM Transactions)", db);
+
+                SqliteDataReader query = selectCommand.ExecuteReader();
+                while (query.Read())
+                {
+                    Transaction transaction = new Transaction();
+
+                    if (!query.IsDBNull(0))
+                        transaction.ISBN = query.GetString(0);
+
+                    if (!query.IsDBNull(1))
+                        transaction.Quatity = query.GetInt32(1);
+
+                    entries.Add(transaction);
+                }
+                db.Close();
+            }
+            return entries;
+        }
+
+        // -----------------------------------------------------------------------------------------------------------
         // สำหรับลบเพื่อเทสระบบ-------------------------------------------------------------------------------------
         public static void DeleteTransaction(int inputNo)
         {
