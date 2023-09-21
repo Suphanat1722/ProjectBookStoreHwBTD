@@ -47,15 +47,13 @@ namespace ProjectBookStoreHw
                         "@ISBN," +
                         "@Title," +
                         "@Description," +
-                        "@Price);");
+                        "@Price);", db);
                 insertCommand.Parameters.AddWithValue("@ISBN", inputIsbn);
                 insertCommand.Parameters.AddWithValue("@Title", inputTitle);
                 insertCommand.Parameters.AddWithValue("@Description", inputDescription);
                 insertCommand.Parameters.AddWithValue("@Price",inputPrice);
 
                 insertCommand.ExecuteNonQuery();
-
-                db.Close();
             }
         }
 

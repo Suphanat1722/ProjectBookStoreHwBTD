@@ -51,6 +51,7 @@ namespace ProjectBookStoreHw
                 MessageBox.Show("เพิ่มข้อมูลเรียบร้อย");
 
                 //เมื่อกด Add จะ clear ข้อมูลใน textBox
+                txtIsbn.Clear();
                 txtTitleBook.Clear();
                 txtDescriptionBook.Clear();
                 txtPriceBook.Clear();
