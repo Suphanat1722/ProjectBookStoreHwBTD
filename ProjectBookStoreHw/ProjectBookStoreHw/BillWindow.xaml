@@ -27,8 +27,6 @@
         <TextBlock x:Name="txtTotalOrder" HorizontalAlignment="Center" Margin="353,537,25,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="114" TextAlignment="Center" Height="39" Text="XXX.XX" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Center" Margin="10,512,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Width="472" TextAlignment="Center" Height="22"><Run Text="----------------------------------------------------------"/><LineBreak/><Run/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="101,617,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Height="30"><Run Text="Project "/><Run Text="สำหรับ "/><Run Text="BornToDev"/><LineBreak/><Run/></TextBlock>
-        <Button x:Name="buttonPrint" Content="พิมพ์" HorizontalAlignment="Left" Margin="336,668,0,0" VerticalAlignment="Top" Width="62" FontSize="20" Height="41" Click="buttonPrint_Click"/>
-        <Button x:Name="buttonClose" Content="ปิด" HorizontalAlignment="Left" Margin="413,668,0,0" VerticalAlignment="Top" Width="62" FontSize="20" Height="41" Click="buttonClose_Click"/>
         <TextBlock x:Name="txtTitle" HorizontalAlignment="Left" Margin="40,480,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="20" Width="205"/>
         <TextBlock x:Name="txtPrice" HorizontalAlignment="Left" Margin="267,477,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Height="27" Width="78" TextAlignment="Right"><Run Text="00.00"/><LineBreak/><Run/></TextBlock>
         <TextBlock x:Name="TxtTotal" HorizontalAlignment="Left" Margin="385,477,0,0" TextWrapping="Wrap" Text="00.00" VerticalAlignment="Top" FontSize="20" TextAlignment="Right" Width="82"/>

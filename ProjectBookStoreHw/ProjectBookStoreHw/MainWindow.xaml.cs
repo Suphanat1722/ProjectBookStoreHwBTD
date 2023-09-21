@@ -17,27 +17,55 @@ namespace ProjectBookStoreHw
 {
     public partial class MainWindow : Window
     {
+        LoginWindow loginWindow = new LoginWindow();
+
         public MainWindow()
         {
-           
+            InitializeComponent();
+
+            loginWindow.ShowDialog();
         }
 
         private void ButtonToBook_Click(object sender, RoutedEventArgs e)
         {
-            BookWindow bookWindow = new BookWindow();
-            bookWindow.Show();
+            if (loginWindow.isLoggedIn == true)
+            {
+                BookWindow bookWindow = new BookWindow();
+                bookWindow.Show();
+            }
+            else
+            {
+                loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+            }
         }
 
         private void ButtonToCustomer_Click(object sender, RoutedEventArgs e)
         {
-            CustomerWindow customerWindow = new CustomerWindow();
-            customerWindow.Show();
+            if (loginWindow.isLoggedIn == true)
+            {
+                CustomerWindow customerWindow = new CustomerWindow();
+                customerWindow.Show();
+            }
+            else
+            {
+                loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+            }
         }
 
         private void ButtonToTransaction_Click(object sender, RoutedEventArgs e)
         {
-            TransactionWindow transactionWindow = new TransactionWindow();
-            transactionWindow.Show();
+            if (loginWindow.isLoggedIn == true)
+            {
+                TransactionWindow transactionWindow = new TransactionWindow();
+                transactionWindow.Show();
+            }
+            else
+            {
+                loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+            }
         }
     }
 }

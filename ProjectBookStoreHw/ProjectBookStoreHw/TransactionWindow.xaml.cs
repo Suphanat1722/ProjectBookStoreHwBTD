@@ -22,7 +22,6 @@ namespace ProjectBookStoreHw
             InitializeComponent();
             TransactionData.InitializeTransactionDatabase();
             List<Transaction> transactionForShow = TransactionData.GetTransactionData();
-            testListView.ItemsSource = transactionForShow;
         }
 
         // -----------------------------------------------------------------------------------------------------------
@@ -45,7 +44,6 @@ namespace ProjectBookStoreHw
             List<Book> bookPricesList = BookData.GetPrice(inputIsbn);
             decimal bookPrices = bookPricesList[0].Price;
             
-
             //เช็คว่า textBox ต้องไม่ว่าง 
             if (!string.IsNullOrEmpty(inputIsbn) &&
                 !string.IsNullOrEmpty(inputCus_Id) &&
@@ -58,10 +56,7 @@ namespace ProjectBookStoreHw
             else
             {
                 MessageBox.Show("กรุณากรอกข้อมูลให้ครบ");
-            }
-            
-            List<Transaction> transactionForShow = TransactionData.GetTransactionData();
-            testListView.ItemsSource = transactionForShow;
+            }           
 
             //เลือกว่าจะพิมพ์ใบเสร็จหรือไม่
             MessageBoxResult printBill = MessageBox.Show("พิมพ์ใบเสร็จหรือไม่", "บันทึกรายการสั่งซื้อเรียบร้อย", MessageBoxButton.YesNo);
@@ -70,13 +65,11 @@ namespace ProjectBookStoreHw
                 BillWindow billWindow = new BillWindow();
                 billWindow.Show();
             }
-
-
         }        
 
         // -----------------------------------------------------------------------------------------------------------
         // ปุ่มลบสำหรับเทสระบบ-------------------------------------------------------------------------------------------
-        private void buttonDelete_Click_1(object sender, RoutedEventArgs e)
+        /*private void buttonDelete_Click_1(object sender, RoutedEventArgs e)
         {
             if (testListView.SelectedItem is Transaction selectedTransaction)
             {
@@ -85,6 +78,6 @@ namespace ProjectBookStoreHw
                 List<Transaction> transactionForShow = TransactionData.GetTransactionData();
                 testListView.ItemsSource = transactionForShow;
             }
-        }
+        }*/
     }
 }

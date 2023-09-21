@@ -11,6 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Printing;
+using System.Windows.Markup;
+using System.Xml;
+using System.IO;
+using PdfSharp.Pdf;
 
 namespace ProjectBookStoreHw
 {
@@ -42,15 +47,6 @@ namespace ProjectBookStoreHw
             txtPrice.Text = price.ToString();
             TxtTotal.Text = total.ToString("N2");
             txtTotalOrder.Text = total.ToString("N2");
-        }
-
-        private void buttonPrint_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
-        {
 
         }
     }

@@ -64,3 +64,13 @@ D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\TransactionWindow.baml
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\BillWindow.g.cs
 D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\BillWindow.baml
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\bin\Debug\PdfSharp.Charting.dll
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\bin\Debug\PdfSharp.dll
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\bin\Debug\PdfSharp.xml
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\bin\Debug\PdfSharp.Charting.xml
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\bin\Debug\de\PdfSharp.resources.dll
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\bin\Debug\de\PdfSharp.Charting.resources.dll
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\LoginWindow.g.cs
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\LoginWindow.baml
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\RegisterWindow.g.cs
+D:\GitHub\BornToDev\ProjectBookStoreHwBTD\ProjectBookStoreHw\ProjectBookStoreHw\obj\Debug\RegisterWindow.baml

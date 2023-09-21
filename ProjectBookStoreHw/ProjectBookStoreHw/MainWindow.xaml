@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectBookStoreHw"
         mc:Ignorable="d"
-        Title="BookStoreApp" Height="500" Width="800">
+        Title="BookStoreApp" Height="500" Width="500">
     <Grid>
-        <Button x:Name="ButtonToBook" Content="Book" HorizontalAlignment="Left" Margin="63,126,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToBook_Click"/>
-        <Button x:Name="ButtonToCustomer" Content="Customer" HorizontalAlignment="Left" Margin="63,197,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToCustomer_Click"/>
-        <Button x:Name="ButtonToTransaction" Content="Transaction" HorizontalAlignment="Left" Margin="63,269,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToTransaction_Click"/>
+        <Button x:Name="ButtonToBook" Content="หนังสือ" HorizontalAlignment="Left" Margin="157,174,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToBook_Click" FontSize="24"/>
+        <Button x:Name="ButtonToCustomer" Content="ลูกค้า" HorizontalAlignment="Left" Margin="157,265,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToCustomer_Click" FontSize="24"/>
+        <Button x:Name="ButtonToTransaction" Content="ซื้อหนังสือ" HorizontalAlignment="Left" Margin="157,356,0,0" VerticalAlignment="Top" Width="184" Height="43" Click="ButtonToTransaction_Click" FontSize="24"/>
+        <TextBlock HorizontalAlignment="Left" Margin="82,39,0,0" TextWrapping="Wrap" Text="บริษัท  ขายหนังสือจำนวนมี จำกัด" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="205,115,0,0" TextWrapping="Wrap" Text="MENU" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
     </Grid>
 </Window>
